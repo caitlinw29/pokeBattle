@@ -37,7 +37,7 @@ function makeTeams() {
             var pokeName = document.createElement ("p");
             pokeName.textContent = data.name;
             container.className = "inline-block";
-            
+            yourTeam.classList.remove("hidden");
                     
             yourTeam.appendChild(container);
             container.appendChild(pokePic);
@@ -59,6 +59,7 @@ function makeTeams() {
             var pokeName = document.createElement ("p");
             pokeName.textContent = data.name;
             container.className = "inline-block";
+            computerTeam.classList.remove("hidden");
            
             
                     
@@ -67,6 +68,13 @@ function makeTeams() {
             container.appendChild(pokeName);
         })
     }
+    var chooseTeams = document.getElementById("chooseTeams");
+    chooseTeams.className = "hidden";
+    var battleBtn = document.createElement("button");
+    battleBtn.textContent = "Battle!";
+    battleBtn.className = "battle-btn";
+    var container1 = document.getElementById("container1");
+    container1.appendChild(battleBtn);
 }
 
 //yourTeam and computerTeam
