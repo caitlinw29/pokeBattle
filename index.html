@@ -10,18 +10,25 @@
         <link rel="stylesheet" href="./assets/css/style.css">
     </head>
     <body class="container">
-        <header class="jumbotron" ><a href="https://fontmeme.com/pokemon-font/"><img src="https://fontmeme.com/permalink/210929/7cd30a4a5262f003d8e10d7d5e09ffd7.png" alt="pokemon-font" border="0"></a></header>
+        <header class="jumbotron" >
+            <a href="https://fontmeme.com/pokemon-font/">
+            <img src="https://fontmeme.com/permalink/210929/7cd30a4a5262f003d8e10d7d5e09ffd7.png" alt="pokemon-font" border="0"></a>
+        </header>
+        <main class="column">
             <section class="row" id="chooseTeams">
                 <label id="chooseTeamsText" for="numPokemon">Choose team size:</label>
                 <input type="number" value="1" id="numPokemon" name="numPokemon" min="1" max="6">
                 <button id="makeTeams">Make Teams!</button>
             </section>
-            <section id="yourTeam">
+            <section class="row" id="yourTeam">
+                <h2>Your Team:</h2>
 
             </section>
-            <section id="computerTeam">
+            <section class="row" id="computerTeam">
+                <h2>VS</h2>
 
             </section>
+        </main>
 
        
         
