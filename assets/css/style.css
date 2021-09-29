@@ -36,3 +36,14 @@ body{
     padding: 10px 20px;
     margin-left: 40px;
 }
+
+.inline-block {
+    display: inline-block;
+    text-align: center;
+    padding: 10px 30px;
+}
+
+#yourTeam,
+#computerTeam {
+    text-align: center;
+}
