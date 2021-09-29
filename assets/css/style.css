@@ -1,0 +1,38 @@
+.jumbotron {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0px;
+}
+
+
+body{
+    background-color: rgb(230, 231, 182);
+    font-size: 1.5em;
+}
+
+#chooseTeams {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0px;
+}
+
+#chooseTeamsText {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.5em;
+}
+
+#numPokemon {
+    height: 50px;
+    width: 50px;
+    margin-left: 20px;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+#makeTeams {
+    background-color: red;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.5em;
+    padding: 10px 20px;
+    margin-left: 40px;
+}
