@@ -1,45 +1,57 @@
-var moves_Electric = []
-
-//10 fire
-//11 water
-//12 grass
-//13 electric
 //stop at id 16....17 are gen 2 types
+var allMoves = []
 
-var allTypes = []
-
-var typesURL = "https://pokeapi.co/api/v2/type/";
-
+function fetchTypes(){
+    var typesURL = "https://pokeapi.co/api/v2/type/";
+    
     fetch(typesURL)
+    
     .then(function (response) {
-    
-    return response.json();
+        return response.json();
     })
-
     .then(function (data) { 
+        for(var i = 0 ; i < data.results.length; i++){
+            var type = data.results[i].name;
+            console.log(type);
 
-    for(var i = 0 ; i < data.results.length; i++){
-        if(i < 16){
-            allTypes.push(data.results[i])
-        }  
-    }      
-    })
-
-console.log(allTypes);
-        
-// var genOneTypesURL = "https://pokeapi.co/api/v2/type/";
-
-for(var j = 0; j < allTypes.length; j++){
-    // console.log(allTypes[j]);
-    
-    // fetch(genOneTypesURL + j)
-    // .then(function (response) {
-    //     return response.json();
-    // })
-    // .then(function (data) { 
-    //     console.log(data);
-    // })
+            //Have to search manually with types because I tried a for loop that would iterate by the index number 
+            //But the results would change order sometimes
+            if(type === "normal"){
+                var normalType = data.results[i].name;
+                var numOfGenOneMoves = 23;
+                console.log(normalType);
+                getMoves(normalType, numOfGenOneMoves);
+            }
+            
+            if(type === "electric"){
+                var electricType = data.results[i].name;
+                var numOfGenOneMoves = 5;
+                console.log(electricType);
+                getMoves(electricType, numOfGenOneMoves);
+            }
+        }      
+    });
 }
+
+function getMoves(type, numMoves){
+    var genOneTypesURL = "https://pokeapi.co/api/v2/type/" + type;
+    fetch(genOneTypesURL)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) { 
+        console.log(data);
+        for(var i = 0; i < numMoves; i++ ){
+            // console.log(data.moves[i].name);
+            var pokemonMove = data.moves[i].name;
+            console.log(pokemonMove);
+            allMoves.push[pokemonMove];     //Doesn't push into array for some reason
+        }
+        console.log(allMoves);      
+    })   
+}
+
+ fetchTypes();   
 
     
 
