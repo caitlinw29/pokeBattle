@@ -1,11 +1,13 @@
 .jumbotron {
-    /* display: flex;
-    justify-content: center; */
     width:100%;
     text-align: center;
     margin: 40px 0px;
 }
 
+/*Get rid of the href cursor to make the link less obvious. Link still exists to credit creators of art/font*/
+.jumbotron img:hover {
+    cursor: auto;
+}
 
 body{
     background-color: rgb(230, 231, 182);
@@ -13,8 +15,6 @@ body{
 }
 
 #chooseTeams {
-    /* display: flex;
-    justify-content: center; */
     margin: 100px 0px;
 }
 
@@ -34,12 +34,18 @@ body{
 #makeTeams {
     background-color: red;
     color: white;
+    text-shadow: 2px 2px rgb(80, 17, 13);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 1.5em;
     padding: 10px 20px;
     margin-left: 40px;
     display: block;
     margin: 30px auto;
+}
+
+#makeTeams:hover,
+.battle-btn:hover {
+    background-color: rgb(67, 107, 182);
 }
 
 .inline-block {
@@ -60,5 +66,17 @@ body{
     font-size: 200%;
     background-color: red;
     color: white;
+    text-shadow: 2px 2px rgb(80, 17, 13);
 }
+
+/*Use on pictures of pokemon when making the teams*/
+.fade-in {
+    animation: fadeIn 3s;
+}
+
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+
 
