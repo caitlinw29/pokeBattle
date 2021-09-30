@@ -1,4 +1,4 @@
-//stop at id 16....17 are gen 2 types
+//stop at id 16....17 are gen 2 types.
 var allMoves = []
 
 function fetchTypes(){
