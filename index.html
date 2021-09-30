@@ -1,44 +1,175 @@
 <!DOCTYPE html>
 
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>PokeBattle</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-        <link rel="stylesheet" href="./assets/css/style.css">
-    </head>
-    <body class="container">
-        <header class="jumbotron" >
-            <a href="https://fontmeme.com/pokemon-font/">
-            <img src="https://fontmeme.com/permalink/210929/7cd30a4a5262f003d8e10d7d5e09ffd7.png" alt="pokemon-font" border="0"></a>
-        </header>
-        <main id="main">
-            <div id="container1">
-                <section id="chooseTeams">
-                    <label class="inline-block" id="chooseTeamsText" for="numPokemon">Choose team size:</label>
-                    <input type="number" value="1" id="numPokemon" name="numPokemon" min="1" max="6">
-                    <button id="makeTeams">Make Teams!</button>
-                </section>
-                <section class="hidden" id="yourTeam">
-                    <h2>Your Team:</h2>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>PokeBattle</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body class="container">
+    <header class="jumbotron" >
+        <a href="https://fontmeme.com/pokemon-font/">
+        <img src="https://fontmeme.com/permalink/210929/7cd30a4a5262f003d8e10d7d5e09ffd7.png" alt="pokemon-font" border="0"></a>
+    </header>
+    <main id="main">
+        <div id="container1">
+            <section id="chooseTeams">
+                <label class="inline-block" id="chooseTeamsText" for="numPokemon">Choose team size:</label>
+                <input type="number" value="1" id="numPokemon" name="numPokemon" min="1" max="6">
+                <button id="makeTeams">Make Teams!</button>
+            </section>
+            <section class="hidden" id="yourTeam">
+                <h2>Your Team:</h2>
 
-                </section>
-                <section class="hidden" id="computerTeam">
-                    <h2>VS</h2>
+            </section>
+            <section class="hidden" id="computerTeam">
+                <h2>VS</h2>
 
-                </section>
+            </section>
+        </div>
+
+       <div class="container" id="container2">
+<!--  row 1 will hold 6 images for my team on left of screen and 6 images for cpu team on right of page.             -->
+            <div class="row align-items-start m-3">
+<!--1st column on the left of the page will have two additional rows with 3 columns   -->
+                <div class="col">
+                <!-- 1st nested row with 3 columns -->
+                <div class="row bg-primary"> 
+                    <div class="col ">
+                        <image id="load-image">
+                      </div>
+                      <div class="col">
+                        <image id="load-image">
+                      </div>
+                </div>
+                <!--2nd nested row with 3 columns -->
+                <div class="row bg-secondary"> 
+                    <div class="col">
+                        <image id="load-image-1">
+                      </div>
+                      <div class="col">
+                        <image id="load-image-2">
+                      </div>
+                      <div class="col">
+                        <image id="load-image-3">
+                      </div>
+                </div>
+              </div>
+<!-- 2 column in the first row -->
+              <div class="col bg-success">
+                One of three columns
+              </div>
+<!-- 3rd column on the right side -->
+              <div class="col">
+                <div class="row bg-primary"> 
+                    <div class="col">   
+                        <image id="load-image-4">
+                      </div>
+                      <div class="col">
+                       <image id="load-image-5">
+                      </div>
+                      <div class="col">
+                        <image id="load-image-6">
+                      </div>
+                </div>
+                <div class="row bg-secondary"> 
+                    <div class="col">
+                        <image id="load-image">
+                      </div>
+                      <div class="col">
+                        <image id="load-image">
+                      </div>
+                      <div class="col">
+                        <image id="load-image">
+                      </div>
+              </div>
             </div>
 
+<!-- 2nd row will house 3 columns left and right side will have a pokemon image middle column will have VS wording-->
+            <div class="row align-items-center mt-3 mb-3">
+<!-- 1st column in the 2nd row displays it on the   -->
+              <div class="col">
+                  <div class="row">
+                    <h2 id="pokemon-name">Pikachu Example</h2>
+                  </div>
+                  <div class="row">
+                    <img src="./images/pikachu back.png " class="img-fluid.maxwidth height-auto " alt="Responsive image" id="your-poke-image">
+                </div>
+                <div class="row">
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                        </div>
+                    </div>
+                </div>
+                </div>
+<!--2nd column in the 2nd row of the page  -->
+              <div class="col">
+                <h1 class="text-center">VS</h1>
+              </div>
+<!--3rd column in the 2nd row of the page  -->
+              <div class="col">
+                <div class="row">
+                    <h2 id="pokemon-name">Charmander Example</h2>
+                  </div>
+                  <div class="row">
+                    <img src="images/charmander Front.png" class="img-fluid" alt="Responsive image" id="cpu-poke-image">
+                </div>
+                <div class="row">
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+<!-- 3rd row with 3 columns left column will have 4 buttons for Pokemon moves and a switch pokemon button -->
+            <div class="row align-items-end mt-3 mb-3">
+<!-- 1st column on the left of 3rd row on page  -->
+                <div class="col w-100">
+                    <div class="row">
+                        <div class="col">
+                            <button type="button" class="btn btn-secondary w-100">Secondary</button> 
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-secondary w-100">Secondary</button> 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button type="button" class="btn btn-secondary w-100">Secondary</button> 
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-secondary w-100">Secondary</button> 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button type="button" class="btn btn-danger w-100">Secondary</button> 
+                        </div>
+                    </div>
+            </div>  
+              
+<!-- 2nd column in the middle of 3rd row on page  -->
+              <div class="col">
+                One of three columns
+              </div>
+<!-- 3rd column on the right of 3rd row on page  -->
+              <div class="col">
+                One of three columns
+              </div>
+            
+          </div>
         </main>
-
-       
-        
-
-        
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
-        <script src="./assets/js/script.js" async defer></script>
-    </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+    <script src="./assets/js/script.js" async defer></script>
+</body>
 </html>
