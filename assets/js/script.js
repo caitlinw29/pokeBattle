@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //stop at id 16....17 are gen 2 types
 //You have an array of each of the types of the moves
 let button1 = document.getElementById('button1');
@@ -19,6 +20,10 @@ async function retrieveType(type) {
 		});
 	return typeArray;
 }
+=======
+//stop at id 16....17 are gen 2 types.
+var allMoves = []
+>>>>>>> 0f5a6dd87e46a9067ab706f40d29fe89c1946a3b
 
 // You run a function that chooses a random pokemon OR the user chooses the pokemon
 // You already know the TYPE of the pokemon
