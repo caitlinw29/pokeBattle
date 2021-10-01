@@ -134,6 +134,7 @@ function getMoves(type, numMoves){
 
  fetchTypes();   
 
+
     
 //goals: get moves to push into allMoves array
 //splice each categories into seaparate arrays
@@ -209,6 +210,7 @@ function getMoves(type, numMoves){
 //target the button for making teams, then on click run the makeTeams function
 var createTeams = document.getElementById("makeTeams");
 createTeams.addEventListener("click", makeTeams);
+var battleBtn;
 
 
 //Use min and max to generatte a random number within a range
@@ -216,6 +218,9 @@ function getRandomNum(min, max) {
     return Math.floor(Math.random() * (max - min + 1));
 }
 
+
+var pokeStorage = [];
+var opponentStorage = [];
 //Make two randomized teams
 function makeTeams() {
     
@@ -310,7 +315,7 @@ function makeTeams() {
     chooseTeams.className = "hidden";
 
     //Create the battle button
-    var battleBtn = document.createElement("button");
+    battleBtn = document.createElement("button");
     battleBtn.textContent = "Battle!";
     battleBtn.className = "battle-btn";
 
@@ -318,6 +323,16 @@ function makeTeams() {
     var container1 = document.getElementById("container1");
     //call a 3s setTimeout before the battle button is made visible
     setTimeout(function() {   
-        container1.appendChild(battleBtn);
+        container1.appendChild(battleBtn).addEventListener("click", showBattle);
     }, 3000)
 }
+
+
+// battleBtn.addEventListener("click", showBattle);
+var container2 = document.getElementById("container2");
+
+function showBattle(){
+    container2.classList.remove("hidden");
+    container1.classList.add("hidden");
+}
+
