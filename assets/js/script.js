@@ -211,7 +211,7 @@ var createTeams = document.getElementById("makeTeams");
 createTeams.addEventListener("click", makeTeams);
 
 
-//Use min and max to generatte a random number within a range
+//Use min and max to generate a random number within a range
 function getRandomNum(min, max) {
     return Math.floor(Math.random() * (max - min + 1));
 }
@@ -321,3 +321,50 @@ function makeTeams() {
         container1.appendChild(battleBtn);
     }, 3000)
 }
+
+
+
+// Fainting/Win/Lose Conditions - Zac 
+
+winCondition = false;
+var hpWidth = 100;
+
+var i = 0;
+function loseHp() {
+  if (i == 0) {
+    i = 1;
+    var elem = document.getElementById("hpBar");
+    hpWidth = 100;
+    // hpWidth can change based on the attack that the defending pokemon endures
+    var id = setInterval(frame, 10);
+    function frame() {
+      if (hpWidth >= 100) {
+        clearInterval(id);
+        i = 1;
+      } else {
+        hpWidth--; // The amount subtracted will coincide with the attack damage amount, the variable attack
+                   // amount can be declared elsewhere and inserted here.
+        elem.style.width = hpWidth + "%";
+        elem.innerHTML = hpWidth  + "%";
+      } 
+    }
+  }
+}
+
+
+var zeroHp = false;
+
+function pokemonFaint(){
+    while (zeroHp) {
+        return;
+    } if (hpWidth == 0){
+        function hasFainted(){
+            // Here we can write script forces the pokemon to 'leave' the screen, and its corresponding picture
+            // to lose it's color/get covered.
+        } 
+    }
+}
+
+
+
+
