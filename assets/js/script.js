@@ -3,8 +3,9 @@ let button2 = document.getElementById('button2');
 let button3 = document.getElementById('button3');
 let button4 = document.getElementById('button4');
 
+
 //Variable of user's pokemon...could also change to ID number if needed
-var pokemonExampleType = "ice";
+var pokemonExampleType = "normal";
 
 function fetchMoveData(){
     let url = 'https://pokeapi.co/api/v2/type/';
@@ -213,6 +214,43 @@ function displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves){
     button3.textContent = finalFourMoves[2].name;
     button4.textContent = finalFourMoves[3].name;
 };
+
+//When user clicks on a move button it brings up the power of the move
+function movePower(){
+    var moveName = this.event.path[0].childNodes[0].nodeValue   //goes through button path to find name of the move
+    console.log(moveName);
+    var powerURL = "https://pokeapi.co/api/v2/move/" + moveName;
+
+    fetch(powerURL)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) { 
+        console.log(data);
+        var power = data.power;
+        if(power === null){
+            var hitOrMiss = Math.floor(Math.random() * 2);  //some moves return null because they don't do damage...in this game they have a 50/50 chance of missing or damaging 50
+            console.log(hitOrMiss);
+            if(hitOrMiss === 0){
+                console.log("Pokemon Missed!");
+            }
+            else{
+                power = 50;
+            }
+        }
+        console.log(power);
+    })
+}
+
+
+
+
+
+
+
+
+
+
 
 fetchMoveData();
 
