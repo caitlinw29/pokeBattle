@@ -210,7 +210,8 @@ function getMoves(type, numMoves){
 //target the button for making teams, then on click run the makeTeams function
 var createTeams = document.getElementById("makeTeams");
 createTeams.addEventListener("click", makeTeams);
-var battleBtn;
+var battlePageBtn;
+var input;
 
 
 //Use min and max to generatte a random number within a range
@@ -225,7 +226,7 @@ var opponentStorage = [];
 function makeTeams() {
     
     //store the user input (1-6)
-    var input = document.getElementById("numPokemon").value;
+    input = document.getElementById("numPokemon").value;
     var pokeArray = [];
     var opponentArray = [];
     //While loops make sure that the same pokemon isn't pulled twice
@@ -315,15 +316,15 @@ function makeTeams() {
     chooseTeams.className = "hidden";
 
     //Create the battle button
-    battleBtn = document.createElement("button");
-    battleBtn.textContent = "Battle!";
-    battleBtn.className = "battle-btn";
+    battlePageBtn = document.createElement("button");
+    battlePageBtn.textContent = "Battle!";
+    battlePageBtn.className = "battle-btn";
 
     //Append the button to the container
     var container1 = document.getElementById("container1");
     //call a 3s setTimeout before the battle button is made visible
     setTimeout(function() {   
-        container1.appendChild(battleBtn).addEventListener("click", showBattle);
+        container1.appendChild(battlePageBtn).addEventListener("click", showBattle);
     }, 3000)
 }
 
@@ -336,3 +337,17 @@ function showBattle(){
     container1.classList.add("hidden");
 }
 
+var battleBtns = document.getElementsByClassName("battle-move");
+for(var i=0; i<battleBtns.length; i++){
+    battleBtns[i].addEventListener("click", movesBegin);
+}
+
+function movesBegin() {
+    console.log("this is working yay");
+    //!check with Zac to see what fainting is called, plug in as "movesBegin"
+    if (movesBegin = true) {
+        var yourBigPoke = document.getElementById("your-poke-image");
+        // yourBigPoke.setAttribute("src", data.sprites.front_default);
+    }
+    
+}
