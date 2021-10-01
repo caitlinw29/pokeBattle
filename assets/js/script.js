@@ -361,6 +361,7 @@ function pokemonFaint(){
         function hasFainted(){
             // Here we can write script forces the pokemon to 'leave' the screen, and its corresponding picture
             // to lose it's color/get covered.
+            
         } 
     }
 }
