@@ -326,46 +326,40 @@ function makeTeams() {
 
 // Fainting/Win/Lose Conditions - Zac 
 
-winCondition = false;
-var hpWidth = 100;
 
-var i = 0;
-function loseHp() {
-  if (i == 0) {
-    i = 1;
-    var elem = document.getElementById("hpBar");
-    hpWidth = 100;
-    // hpWidth can change based on the attack that the defending pokemon endures
-    var id = setInterval(frame, 10);
-    function frame() {
-      if (hpWidth >= 100) {
-        clearInterval(id);
-        i = 1;
-      } else {
-        hpWidth--; // The amount subtracted will coincide with the attack damage amount, the variable attack
-                   // amount can be declared elsewhere and inserted here.
-        elem.style.width = hpWidth + "%";
-        elem.innerHTML = hpWidth  + "%";
-      } 
-    }
-  }
-}
+// Functions for HP, user & computer.
 
 
-var zeroHp = false;
 
-function pokemonFaint(){
-    while (zeroHp) {
-        return;
-    } if (hpWidth == 0){
-        function hasFainted(){
-            // Here we can write script forces the pokemon to 'leave' the screen, and its corresponding picture
-            // to lose it's color/get covered.
-            
-        } 
+// User HP
+
+let userHealth = document.getElementById('userHealth');
+
+function loseUserHp (power){
+    userHealth.value -= power;
+    console.log(userHealth.value);
+    if (userHealth.value === 0);{
+        console.log("Your Pokémon has fainted!");
+        pokeArray -= 1;
+        console.log(pokeArray);
     }
 }
 
 
+// Computer HP
 
+let computerHealth =  document.getElementById('computerHealth');
 
+function loseComputerHp (power){
+    computerHealth.value -= power;
+    console.log(computerHealth.value);
+    if (computerHealth === 0){
+        console.log("Enemy Pokémon has fainted!");
+        opponentArray -= 1;
+        console.log(opponentArray);
+    }
+}
+
+function hasFainted() {
+
+}
