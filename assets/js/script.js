@@ -201,7 +201,8 @@ function getMoves(type, numMoves){
 
 //     var pokemonHitPoints = 200;
 // }
-
+var pokeArray = [];
+var opponentArray = [];
 
 
 // userPokemonType();
@@ -322,6 +323,9 @@ function makeTeams() {
     }, 3000)
 }
 
+console.log(pokeArray);
+console.log(opponentArray);
+
 
 
 // Fainting/Win/Lose Conditions - Zac 
@@ -340,8 +344,6 @@ function loseUserHp (power){
     console.log(userHealth.value);
     if (userHealth.value === 0);{
         console.log("Your Pokémon has fainted!");
-        pokeArray -= 1;
-        console.log(pokeArray);
     }
 }
 
@@ -355,11 +357,10 @@ function loseComputerHp (power){
     console.log(computerHealth.value);
     if (computerHealth === 0){
         console.log("Enemy Pokémon has fainted!");
-        opponentArray -= 1;
-        console.log(opponentArray);
     }
 }
 
-function hasFainted() {
-
+function hasFainted() { 
+    // The location of individual Pokémon within the array can be identified with array
+    // index, and removed when their HP goes to zero per the functions above.
 }
