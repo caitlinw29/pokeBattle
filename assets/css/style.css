@@ -79,4 +79,10 @@ body{
     100% {opacity:1;}
 }
 
+#container2{
+  background-image: url('../images/grassfeild.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed  ;
+  background-size: cover;
 
+}
