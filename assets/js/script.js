@@ -416,8 +416,8 @@ function makeTeams() {
 
         //Add the div to the section, and the img and p to the div
         yourTeam.appendChild(container);
-        container.appendChild(pokePic);
-        container.appendChild(pokeName);
+        container.appendChild(img);
+        container.appendChild(p);
 
         playerSpritesArray.push(data.sprites.front_default);
         
@@ -462,49 +462,28 @@ function makeTeams() {
                 cpuSpritesArray.push(data.sprites.front_default);
 
             })
-        }
+        } 
     }, 1500) //end of timeout
-    
-  
 
-    //Oscar
-    function battleBtnDisplayTeams(){
-    // OU code for pulling in pokemon img's into image tags on battle page.
-            //creating variables to manipulate the img tags for player and cpu teams
-            var userTeamImg1 = document.getElementById("user-team-img-1");
-            var userTeamImg2 = document.getElementById("user-team-img-2");
-            var userTeamImg3 = document.getElementById("user-team-img-3");
-            var userTeamImg4 = document.getElementById("user-team-img-4");
-            var userTeamImg5 = document.getElementById("user-team-img-5");
-            var userTeamImg6 = document.getElementById("user-team-img-6");
+    //function will display the teams on the battle page
+    function battleBtnDisplayTeams(){ 
+        //creating images for each pokemon on both the user team, and the cpu team
+        //images appended to their containers, with the src pulled from the playerSpritesArray and cpuSpritesArray
+        for (i=0; i<playerSpritesArray.length; i++) {
+            var img = document.createElement("img");
+            img.setAttribute("src", playerSpritesArray[i]);
+            var playerTeam = document.getElementById("playerTeam");
+            playerTeam.appendChild(img);
+        }
 
-            var cpuTeamImg1 = document.getElementById("cpu-team-img-1");
-            var cpuTeamImg2 = document.getElementById("cpu-team-img-2");
-            var cpuTeamImg3 = document.getElementById("cpu-team-img-3");
-            var cpuTeamImg4 = document.getElementById("cpu-team-img-4");
-            var cpuTeamImg5 = document.getElementById("cpu-team-img-5");
-            var cpuTeamImg6 = document.getElementById("cpu-team-img-6");
-
-
-            userTeamImg1.setAttribute('src', playerSpritesArray[0]);
-            userTeamImg2.setAttribute('src', playerSpritesArray[1]);
-            userTeamImg3.setAttribute('src', playerSpritesArray[2]);
-            userTeamImg4.setAttribute('src', playerSpritesArray[3]);
-            userTeamImg5.setAttribute('src', playerSpritesArray[4]);
-            userTeamImg6.setAttribute('src', playerSpritesArray[5]);
-
-            cpuTeamImg1.setAttribute('src', cpuSpritesArray[0]);
-            cpuTeamImg2.setAttribute('src', cpuSpritesArray[1]);
-            cpuTeamImg3.setAttribute('src', cpuSpritesArray[2]);
-            cpuTeamImg4.setAttribute('src', cpuSpritesArray[3]);
-            cpuTeamImg5.setAttribute('src', cpuSpritesArray[4]);
-            cpuTeamImg6.setAttribute('src', cpuSpritesArray[5]);
-        
+        for (i=0; i<cpuSpritesArray.length; i++) {
+            var img = document.createElement("img");
+            img.setAttribute("src", cpuSpritesArray[i]);
+            var cpuTeam = document.getElementById("cpuTeam");
+            cpuTeam.appendChild(img);
+        } 
     }
-}
-
-
-
+    
     //Hide the "choose team size" input and "make teams" button
     var chooseTeams = document.getElementById("chooseTeams");
     chooseTeams.className = "hidden";
@@ -520,7 +499,12 @@ function makeTeams() {
     setTimeout(function() {   
         //After appending the button, if it is clicked, showBattle function runs
         container1.appendChild(battlePageBtn).addEventListener("click", showBattle);
-    }, 3000)
+        battlePageBtn.addEventListener("click", battleBtnDisplayTeams);
+    }, 2000)
+}
+
+
+   
 
 
 //Save the user pokemon in an array of objects. Each pokemon will have the name, picture, and type stored
@@ -566,13 +550,6 @@ var saveCpuPokemon = function (pokeName, pokePic, pokeType) {
 
     console.log(oldPokemon);
 };
-
-
-
-
-
-console.log(pokeArray);
-console.log(opponentArray);
 
 
 
@@ -636,8 +613,11 @@ for(var i=0; i<battleBtns.length; i++){
     battleBtns[i].addEventListener("click", moveBegins);
 }
 
+
 function moveBegins() {
     console.log("this is working yay");
+
+    
     var showTeam = document.getElementById("showTeam");
     // showTeam.classList.remove()
     var flipCoin = Math.floor(Math.random() * 2);
