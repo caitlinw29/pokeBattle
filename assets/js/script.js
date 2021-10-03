@@ -486,24 +486,22 @@ function makeTeams() {
             cpuTeam.appendChild(img);
         } 
 
-        //Make userPokemonName the h2 text that will display the pokemon name
-        var userPokemonName = document.getElementById("user-pokemon-name");
+        // Make userPokemonName the H2 text that will display the pokemon name
+        var userPokemonName = document.getElementById('user-pokemon-name');
         //pull the name from storage
         var userPokeArray = JSON.parse(localStorage.getItem('userPokemon'));
         userPokemonName.textContent = userPokeArray[0].name;
-        
-        //Pull the cpu pokemon name from storage as well
-        var cpuPokemonName = document.getElementById("cpu-pokemon-name");
+
+        var cpuPokemonName = document.getElementById('cpu-pokemon-name');
         var cpuPokeArray = JSON.parse(localStorage.getItem('cpuPokemon'));
         cpuPokemonName.textContent = cpuPokeArray[0].name;
 
-        //Pull the user pokemon picture from storage
-        var userPokemonPic = document.getElementById("your-poke-image");
-        userPokemonPic.setAttribute("src", userPokeArray[0].picture);
+        var userPokemonPic = document.getElementById('your-poke-image');
+        userPokemonPic.setAttribute('src',userPokeArray[0].picture);
 
-        //Pull the cpu pokemon picture from storage
-        var cpuPokemonPic = document.getElementById("cpu-poke-image");
-        cpuPokemonPic.setAttribute("src", cpuPokeArray[0].picture);
+        var cpuPokemonPic = document.getElementById('cpu-poke-image');
+        cpuPokemonPic.setAttribute('src',cpuPokeArray[0].picture);
+
 
     }
     
