@@ -37,6 +37,7 @@ function fetchMoveData(){
                 let numOfGenOneMoves = 23;
                 console.log("Normal Moves");
                 displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+                storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
             });
             break;
         }
@@ -47,6 +48,7 @@ function fetchMoveData(){
                 let numOfGenOneMoves = 7;
                 console.log("Fighting Moves");
                 displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+                storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
             });
             break;
         }
@@ -57,6 +59,7 @@ function fetchMoveData(){
                let numOfGenOneMoves = 7;
                console.log("Flying Moves");
                displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+               storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
            });
            break;
         }
@@ -67,6 +70,7 @@ function fetchMoveData(){
             let numOfGenOneMoves = 7;
             console.log("Poison Moves");
             displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+            storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
         });
         break;
         }
@@ -77,6 +81,7 @@ function fetchMoveData(){
             let numOfGenOneMoves = 6;
             console.log("Ground Moves");
             displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+            storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
         });
         break;
         }
@@ -87,6 +92,7 @@ function fetchMoveData(){
             let numOfGenOneMoves = 4;
             console.log("Rock Moves");
             displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+            storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
         });
         break;
         }
@@ -97,6 +103,7 @@ function fetchMoveData(){
             let numOfGenOneMoves = 7;
             console.log("Bug Moves");
             displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+            storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
         });
         break;
         }
@@ -107,6 +114,7 @@ function fetchMoveData(){
             let numOfGenOneMoves = 4;
             console.log("Ghost Moves");
             displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+            storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
         });
         break;
         }
@@ -117,6 +125,7 @@ function fetchMoveData(){
             let numOfGenOneMoves = 5;
             console.log("Fire Moves");
             displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+            storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
         });
         break;
         }
@@ -127,6 +136,7 @@ function fetchMoveData(){
             let numOfGenOneMoves = 9;
             console.log("Water Moves");
             displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+            storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
         });
         break;
         }
@@ -137,6 +147,7 @@ function fetchMoveData(){
             let numOfGenOneMoves = 10;
             console.log("Grass Moves");
             displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+            storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
         });
         break;
         }
@@ -147,6 +158,7 @@ function fetchMoveData(){
             let numOfGenOneMoves = 5;
             console.log("Electric Moves");
             displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+            storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
         });
         break;
         }
@@ -157,6 +169,7 @@ function fetchMoveData(){
             let numOfGenOneMoves = 4;
             console.log("Psychic Moves");
             displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+            storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
         });
         break;
         }
@@ -167,6 +180,7 @@ function fetchMoveData(){
             let numOfGenOneMoves = 5;
             console.log("Ice Moves");
             displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+            storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
         });
         break;
         }
@@ -177,6 +191,7 @@ function fetchMoveData(){
             let numOfGenOneMoves = 4;
             console.log("Dragon Moves");
             displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+            storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
         });
         break;
         }
@@ -217,13 +232,13 @@ function displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves){
 
 //When user clicks on a move button it brings up the power of the move
 function movePower(){
-    var moveName = this.event.path[0].childNodes[0].nodeValue   //goes through button path to find name of the move
+    var moveName = this.event.path[0].childNodes[0].nodeValue;   //goes through button path to find name of the move
     console.log(moveName);
     var powerURL = "https://pokeapi.co/api/v2/move/" + moveName;
 
     fetch(powerURL)
     .then(function (response) {
-        return response.json();
+      return response.json();
     })
     .then(function (data) { 
         console.log(data);
@@ -260,7 +275,7 @@ fetchMoveData();
 // function userPokemonType(){
 //     var userPokemon = "pikachu";
 //     var userPokeURL = "https://pokeapi.co/api/v2/pokemon/" + userPokemon;
-    
+
 //     fetch(userPokeURL)
 //     .then(function (response) {
 //         return response.json();
@@ -277,7 +292,7 @@ fetchMoveData();
 
 // //     var enemyPokemon = "squirtle";
 // //     var enemyPokeURL = "https://pokeapi.co/api/v2/pokemon/" + enemyPokemon;
-    
+
 // //     fetch(enemyPokeURL)
 // //     .then(function (response) {
 // //         return response.json();
@@ -323,20 +338,30 @@ var opponentArray = [];
 
 var createTeams = document.getElementById("makeTeams");
 createTeams.addEventListener("click", makeTeams);
+var pokeType; 
+var cpuPokeType;
 
 
 //Use min and max to generate a random number within a range
 function getRandomNum(min, max) {
-    return Math.floor(Math.random() * (max - min + 1));
+  return Math.floor(Math.random() * (max - min + 1));
 }
 
+// oscars array
+var playerSpritesArray = [];
+var cpuSpritesArray = [];
+var container2 = document.getElementById('container2');
+
+var input;
 //Make two randomized teams
 function makeTeams() {
     
     //store the user input (1-6)
-    var input = document.getElementById("numPokemon").value;
+    input = document.getElementById("numPokemon").value;
     var pokeArray = [];
     var opponentArray = [];
+    //clear previous battle pokemon
+    localStorage.clear();
     //While loops make sure that the same pokemon isn't pulled twice
     while(pokeArray.length <= input - 1){
         //Only using first generation pokemon, which is where 151 comes from
@@ -344,53 +369,65 @@ function makeTeams() {
         //if the random number isn't already in the array, push it in
         if(pokeArray.indexOf(randomPokemon) === -1) {
             pokeArray.push(randomPokemon);
-        };
-    }
-    while(opponentArray.length <= input - 1){
-        var randomPokemon = getRandomNum(0, 151);
-        //check both arrays this time so there aren't a repeat pokemon across teams either
-        if(opponentArray.indexOf(randomPokemon) === -1 && pokeArray.indexOf(randomPokemon) === -1) {
-            opponentArray.push(randomPokemon);
-        };
+        }
     }
 
-    //two for loops, one for user pokemon and one for computer pokemon
-    //for each number up to the user selected input number...
-    for(i=0; i<input; i++) {
-        //pull the current index value of the array...
-        var pokeArrayInput = pokeArray[i];
-        //plug that value into the url as the number for the random pokemon to pull the data for that pokemon...
-        var pokeUrl = "https://pokeapi.co/api/v2/pokemon/" + pokeArrayInput;
-        fetch(pokeUrl)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) { 
-            //...create a div to store an img and p tag.
-            var container = document.createElement("div");
-            container.className = "inline-block";
-            //set the src to be the sprite image from the API call
-            var pokePic = document.createElement("img");
-            pokePic.setAttribute("src", data.sprites.front_default);
-            //Set p textcontent to be the name of the pokemon, with the first letter capitalized - 0 is the first letter capitalized and substring will hold the rest of the letters
-            var pokeName = document.createElement ("p");
-            pokeName.textContent = data.name[0].toUpperCase() + data.name.substring(1);
-            //Make the section visible
-            var yourTeam = document.getElementById("yourTeam");
-            yourTeam.classList.remove("hidden");
-            //Add animations to the image and text
-            pokePic.className = "fade-in";
-            pokeName.className = "fade-in";
-            
-            //Add the div to the section, and the img and p to the div
-            yourTeam.appendChild(container);
-            container.appendChild(pokePic);
-            container.appendChild(pokeName);
-        })
+  while (opponentArray.length <= input - 1) {
+    var randomPokemon = getRandomNum(0, 151);
+    //check both arrays this time so there aren't a repeat pokemon across teams either
+    if (opponentArray.indexOf(randomPokemon) === -1 && pokeArray.indexOf(randomPokemon) === -1) {
+      opponentArray.push(randomPokemon);
     }
-    setTimeout(function() {   //  call a 1.5s setTimeout before the computer's team show up                 
-      
-        for(i=0; i<input; i++) {
+  }
+
+  //two for loops, one for user pokemon and one for computer pokemon
+  //for each number up to the user selected input number...
+  for (i = 0; i < input; i++) {
+    //pull the current index value of the array...
+    var pokeArrayInput = pokeArray[i];
+    //plug that value into the url as the number for the random pokemon to pull the data for that pokemon...
+    var pokeUrl = "https://pokeapi.co/api/v2/pokemon/" + pokeArrayInput;
+    fetch(pokeUrl)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        //...create a div to store an img and p tag.
+        var container = document.createElement("div");
+        container.className = "inline-block";
+        //set the src to be the sprite image from the API call
+        var img = document.createElement("img");
+        var pokePic = data.sprites.front_default;
+        img.setAttribute("src", pokePic);
+        //Set p textcontent to be the name of the pokemon, with the first letter capitalized - 0 is the first letter capitalized and substring will hold the rest of the letters
+        var p = document.createElement("p");
+        var pokeName = data.name[0].toUpperCase() + data.name.substring(1);
+        p.textContent = pokeName;
+        //Make the section visible
+        var yourTeam = document.getElementById("yourTeam");
+        yourTeam.classList.remove("hidden");
+        //Add animations to the image and text
+        img.className = "fade-in";
+        p.className = "fade-in";
+
+        pokeType = data.types[0].type.name;
+
+        saveUserPokemon(pokeName, pokePic, pokeType);
+
+        //Add the div to the section, and the img and p to the div
+        yourTeam.appendChild(container);
+        container.appendChild(img);
+        container.appendChild(p);
+
+        playerSpritesArray.push(data.sprites.front_default);
+        
+      })
+  }
+
+    //  call a 1.5s setTimeout before the computer's team shows up
+    setTimeout(function () {
+    
+        for (i = 0; i < input; i++) {
             //Set up a randomized team for the computer
             var opponentArrayInput = opponentArray[i];
             var opponentUrl = "https://pokeapi.co/api/v2/pokemon/" + opponentArrayInput;
@@ -402,23 +439,51 @@ function makeTeams() {
                 //create elements and set classes, text-content, and attributes
                 var container = document.createElement("div");
                 container.className = "inline-block";
-                var pokePic = document.createElement("img");
-                pokePic.setAttribute("src", data.sprites.front_default);
-                pokePic.className = "fade-in";
-                var pokeName = document.createElement ("p");
-                pokeName.textContent = data.name[0].toUpperCase() + data.name.substring(1);
+                var img = document.createElement("img");
+                var pokePic = data.sprites.front_default;
+                img.setAttribute("src", pokePic);
+                img.className = "fade-in";
+                var p = document.createElement ("p");
+                var pokeName = data.name[0].toUpperCase() + data.name.substring(1);
+                p.textContent = pokeName;
                 pokeName.className = "fade-in";
                 var computerTeam = document.getElementById("computerTeam");
                 computerTeam.classList.remove("hidden");
+
+                pokeType = data.types[0].type.name;
+
+                saveCpuPokemon(pokeName, pokePic, pokeType);
                 
                 //Append the divs to the computer section and the img and p tags to the div
                 computerTeam.appendChild(container);
-                container.appendChild(pokePic);
-                container.appendChild(pokeName);
+                container.appendChild(img);
+                container.appendChild(p);
+
+                cpuSpritesArray.push(data.sprites.front_default);
+
             })
-        }
+        } 
     }, 1500) //end of timeout
 
+    //function will display the teams on the battle page
+    function battleBtnDisplayTeams(){ 
+        //creating images for each pokemon on both the user team, and the cpu team
+        //images appended to their containers, with the src pulled from the playerSpritesArray and cpuSpritesArray
+        for (i=0; i<playerSpritesArray.length; i++) {
+            var img = document.createElement("img");
+            img.setAttribute("src", playerSpritesArray[i]);
+            var playerTeam = document.getElementById("playerTeam");
+            playerTeam.appendChild(img);
+        }
+
+        for (i=0; i<cpuSpritesArray.length; i++) {
+            var img = document.createElement("img");
+            img.setAttribute("src", cpuSpritesArray[i]);
+            var cpuTeam = document.getElementById("cpuTeam");
+            cpuTeam.appendChild(img);
+        } 
+    }
+    
     //Hide the "choose team size" input and "make teams" button
     var chooseTeams = document.getElementById("chooseTeams");
     chooseTeams.className = "hidden";
@@ -432,12 +497,59 @@ function makeTeams() {
     var container1 = document.getElementById("container1");
     //call a 3s setTimeout before the battle button is made visible
     setTimeout(function() {   
+        //After appending the button, if it is clicked, showBattle function runs
         container1.appendChild(battlePageBtn).addEventListener("click", showBattle);
-    }, 3000)
+        battlePageBtn.addEventListener("click", battleBtnDisplayTeams);
+    }, 2000)
 }
 
-console.log(pokeArray);
-console.log(opponentArray);
+
+   
+
+
+//Save the user pokemon in an array of objects. Each pokemon will have the name, picture, and type stored
+var saveUserPokemon = function (pokeName, pokePic, pokeType) {
+    var oldPokemon = JSON.parse(localStorage.getItem('userPokemon')) || [];
+    var match = oldPokemon.find(function (pokemon) {
+        return pokemon['name'] === pokeName;
+    });
+    if (match) {
+        match['picture'] += pokePic;
+        match['type'] += pokeType;
+    } else {
+        var newPokemon = {
+            'name': pokeName,
+            'picture': pokePic,
+            'type': pokeType
+        };
+        oldPokemon.push(newPokemon);
+    }
+    localStorage.setItem('userPokemon', JSON.stringify(oldPokemon));
+
+    console.log(oldPokemon);
+};
+
+//Save the cpu pokemon in an array of objects. Each pokemon will have the name, picture, and type stored
+var saveCpuPokemon = function (pokeName, pokePic, pokeType) {
+    var oldPokemon = JSON.parse(localStorage.getItem('cpuPokemon')) || [];
+    var match = oldPokemon.find(function (pokemon) {
+        return pokemon['name'] === pokeName;
+    });
+    if (match) {
+        match['picture'] += pokePic;
+        match['type'] += pokeType;
+    } else {
+        var newPokemon = {
+            'name': pokeName,
+            'picture': pokePic,
+            'type': pokeType
+        };
+        oldPokemon.push(newPokemon);
+    }
+    localStorage.setItem('cpuPokemon', JSON.stringify(oldPokemon));
+
+    console.log(oldPokemon);
+};
 
 
 
@@ -460,7 +572,8 @@ function loseUserHp (power){
     while (userHealth.value > 0) {
         notFaintedYet();
         return;
-    } if (userHealth.value === 0){
+    } 
+    if (userHealth.value === 0){
         hasFaintedUser();
     }
 }
@@ -487,9 +600,8 @@ function loseComputerHp (power){
 function hasFainted() { 
     // The location of individual Pokémon within the array can be identified with array
     // index, and removed when their HP goes to zero per the functions above.
+}
 
-// battleBtn.addEventListener("click", showBattle);
-var container2 = document.getElementById("container2");
 
 function showBattle(){
     container2.classList.remove("hidden");
@@ -498,18 +610,77 @@ function showBattle(){
 
 var battleBtns = document.getElementsByClassName("battle-move");
 for(var i=0; i<battleBtns.length; i++){
-    battleBtns[i].addEventListener("click", movesBegin);
+    battleBtns[i].addEventListener("click", moveBegins);
 }
 
-function movesBegin() {
+
+function moveBegins() {
     console.log("this is working yay");
-    //!check with Zac to see what fainting is called, plug in as "movesBegin"
-    if (movesBegin = true) {
-        var yourBigPoke = document.getElementById("your-poke-image");
-        // yourBigPoke.setAttribute("src", data.sprites.front_default);
+
+    
+    var showTeam = document.getElementById("showTeam");
+    // showTeam.classList.remove()
+    var flipCoin = Math.floor(Math.random() * 2);
+    if(flipCoin === 0){
+        //input functionality of pokemon making a move and hp bar lowering
+        completeCpuMove();
     }
-}  
+    else{
+        completeCpuMove();
+        //input functionality of pokemon making a move and hp bar lowering
+    }
+    //!check with Zac to see what fainting is called, plug in as "movesBegin"
+    if (hasFaintedUser = true) {
+        for(var i = 0; i<userImages.length; i++) {
+            userImages[i].classList.add("overlay");
+        }
+        
+        // JSON.parse(localStorage.getItem("userPokemon"));
+        // var yourBigPoke = document.getElementById("your-poke-image");
+        // yourBigPoke.setAttribute("src", userPokemon[0].picture);
+    } 
+    if (hasFaintedComputer = true) {
+        for(var i = 0; i<computerImages.length; i++) {
+            computerImages[i].classList.add("overlay");
+        }
+    }
+
+    completeCpuMove();
 }
+
+var cpuMove;
+//save a bank of 4 moves from the CPU's type. Randomly select one of those moves, and store it to be used in the completeCpuMove function
+function storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves) {
+    for (let i = 0; i < numOfGenOneMoves; i++) {
+        randomizedArray.push(value[i]);
+    }
+    // console.log(randomizedArray);
+    let currentIndex = randomizedArray.length;
+
+    
+    //Shuffles all the moves in the type array
+    while (currentIndex != 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        [randomizedArray[currentIndex], randomizedArray[randomIndex]] =
+            [randomizedArray[randomIndex], randomizedArray[currentIndex]];
+    }
+
+    //Picks the first 4 index values of the shuffled array and displays them to each button
+    for (let i = 0; i < 1; i++) {
+        finalFourMoves.push(randomizedArray[i]);
+    }
+    
+    //Create cpuMove by pulling a random move from the 4 CPU moves
+    cpuMove = randomizedArray[i].name;
+}
+
+function completeCpuMove() {
+
+}
+ 
+
 
 
 //  Functions that loop through the images with class names stored in variables
@@ -519,27 +690,26 @@ function movesBegin() {
 
 
 
-var userImages = document.getElementsByClassName('userHpOverlay');
+var userImages = document.getElementsByClassName('overlay');
 
-function hasFaintedUser(){
-    for(var i = 0; i<userImages.length; i++){
-        userImages[i].style.display = 'block';
-    }
-}
+// function hasFaintedUser(){
+//     for(var i = 0; i<userImages.length; i++){
+//         userImages[i].style.display = 'block';
+//     }
+// }
 
-var computerImages = document.getElementsByClassName('compHpOverlay');
+var computerImages = document.getElementsByClassName('overlay');
 
-function hasFaintedComputer(){
-    for(var i = 0; i<computerImages.length; i++){
-        computerImages[i].style.display = 'block';
-    }
-}
+// function hasFaintedComputer(){
+//     // for(var i = 0; i<computerImages.length; i++) {
+//     //     computerImages[i].style.display = 'block';
+//     // }
+// }
+// var notFainted = document.querySelectorAll('.compHpOverlay, .userHpOverlay');
 
-var notFainted = document.querySelectorAll('.compHpOverlay, .userHpOverlay');
-
-function notFaintedYet(){
-    notFainted.style.display = 'none';
-}
+// function notFaintedYet(){
+//     notFainted.style.display = 'none';
+// }
 
 
 

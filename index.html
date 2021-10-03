@@ -36,63 +36,20 @@
         </div>
 
         <div class="container hidden" id="container2">
+    
             <!--  row 1 will hold 6 images for my team on left of screen and 6 images for cpu team on right of page.             -->
-          <div class="row align-items-start m-3">
+          <div class="row align-items-start m-3" id='battle-background'>
               <!--1st column on the left of the page will have two additional rows with 3 columns   -->
-              <div class="col">
-                <!-- 1st nested row with 3 columns -->
-                <div class="row bg-primary"> 
-                    <div class="col userHpOverlay">
-                      <img id="user-team-img-1">
-                    </div>
-                    <div class="col userHpOverlay">
-                      <img id="user-team-img-2">
-                    </div>
-                    <div class="col userHpOverlay">
-                      <img id="user-team-img-3">
-                    </div>
-                </div>
-                  <!--2nd nested row with 3 columns -->
-                <div class="row bg-secondary"> 
-                    <div class="col userHpOverlay">
-                      <img id="user-team-img-4">
-                    </div>
-                    <div class="col userHpOverlay">
-                      <img id="user-team-img-5">
-                    </div>
-                    <div class="col userHpOverlay">
-                      <img id="user-team-img-6">
-                    </div>
-                </div>
+              <div class="col" id="playerTeam">
+                
               </div>
               <!-- 2 column in the first row -->
-              <div class="col bg-success">
-                  One of three columns
+              <div class="col">
+                  
               </div>
                 <!-- 3rd column on the right side -->
-              <div class="col">
-                  <div class="row bg-primary"> 
-                    <div class="col compHpOverlay">   
-                      <img id="cpu-team-img-1">
-                    </div>
-                    <div class="col compHpOverlay">
-                      <img id="cpu-team-img-2">
-                    </div>
-                    <div class="col compHpOverlay">
-                      <img id="cpu-team-img-3">
-                    </div>
-                  </div>
-                  <div class="row bg-secondary"> 
-                    <div class="col compHpOverlay">
-                      <img id="cpu-team-img-4">
-                    </div>
-                    <div class="col compHpOverlay">
-                      <img id="cpu-team-img-5">
-                    </div>
-                    <div class="col compHpOverlay">
-                      <img id="cpu-team-img-6">
-                    </div>
-                  </div>
+              <div class="col" id="cpuTeam">
+                  
               </div>
           </div>
         
@@ -104,7 +61,7 @@
                 <h2 id="pokemon-name">Pikachu Example</h2>
               </div>
               <div class="row">
-                <img src="./images/pikachu back.png " class="img-fluid.maxwidth height-auto " alt="Responsive image" id="your-poke-image">
+                <img src="" class="img-fluid.maxwidth height-auto " alt="Responsive image" id="your-poke-image">
               </div>
               <div class="row">
                 <div class="progress">
@@ -123,7 +80,7 @@
                 <h2 id="pokemon-name">Charmander Example</h2>
               </div>
               <div class="row">
-                <img src="images/charmander Front.png" class="img-fluid" alt="Responsive image" id="cpu-poke-image">
+                <img src="" class="img-fluid" alt="Responsive image" id="cpu-poke-image">
               </div>
               <div class="row">
                 <div class="progress">
@@ -139,23 +96,23 @@
             <div class="col w-100">
               <div class="row">
                 <div class="col">
-                  <button type="button" class="battle-move btn btn-secondary w-100">Secondary</button> 
+                  <button id="button1" onclick="movePower()" type="button" class="battle-move btn btn-secondary w-100"></button> 
                 </div>
                 <div class="col">
-                  <button type="button" class="battle-move btn btn-secondary w-100">Secondary</button> 
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <button type="button" class="battle-move btn btn-secondary w-100">Secondary</button> 
-                </div>
-                <div class="col">
-                  <button type="button" class="battle-move btn btn-secondary w-100">Secondary</button> 
+                  <button id="button2" onclick="movePower()" type="button" class="battle-move btn btn-secondary w-100"></button> 
                 </div>
               </div>
               <div class="row">
                 <div class="col">
-                  <button type="button" class="btn btn-danger w-100">Secondary</button> 
+                  <button id="button3" onclick="movePower()" type="button" class="battle-move btn btn-secondary w-100"></button> 
+                </div>
+                <div class="col">
+                  <button id="button4" onclick="movePower()" type="button" class="battle-move btn btn-secondary w-100"></button> 
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <button type="button" class="btn btn-danger w-100">Switch Pokemon</button> 
                 </div>
               </div>
             </div>  
