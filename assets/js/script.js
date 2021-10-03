@@ -461,7 +461,7 @@ function loseUserHp (power){
         notFaintedYet();
         return;
     } if (userHealth.value === 0){
-        function hasFaintedUser();
+        hasFaintedUser();
     }
 }
 
@@ -477,7 +477,7 @@ function loseComputerHp (power){
         notFaintedYet();
         return;
     } if (computerHealth === 0){
-        function hasFaintedComputer();
+        hasFaintedComputer();
     }
 }
 
@@ -530,8 +530,9 @@ function hasFaintedUser(){
 var computerImages = document.getElementsByClassName('compHpOverlay');
 
 function hasFaintedComputer(){
-    for(var i = 0; i<computerImages.length; i++)
+    for(var i = 0; i<computerImages.length; i++){
         computerImages[i].style.display = 'block';
+    }
 }
 
 var notFainted = document.querySelectorAll('.compHpOverlay, .userHpOverlay');
