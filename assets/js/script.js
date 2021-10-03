@@ -344,13 +344,16 @@ function getRandomNum(min, max) {
     return Math.floor(Math.random() * (max - min + 1));
 }
 
+var input;
 //Make two randomized teams
 function makeTeams() {
     
     //store the user input (1-6)
-    var input = document.getElementById("numPokemon").value;
+    input = document.getElementById("numPokemon").value;
     var pokeArray = [];
     var opponentArray = [];
+    //clear previous battle pokemon
+    localStorage.clear();
     //While loops make sure that the same pokemon isn't pulled twice
     while(pokeArray.length <= input - 1){
         //Only using first generation pokemon, which is where 151 comes from
@@ -380,30 +383,33 @@ function makeTeams() {
             return response.json();
         })
         .then(function (data) { 
-            console.log(data);
+            
             //...create a div to store an img and p tag.
             var container = document.createElement("div");
             container.className = "inline-block";
             //set the src to be the sprite image from the API call
-            var pokePic = document.createElement("img");
-            pokePic.setAttribute("src", data.sprites.front_default);
+            var img = document.createElement("img");
+            var pokePic = data.sprites.front_default;
+            img.setAttribute("src", pokePic);
             //Set p textcontent to be the name of the pokemon, with the first letter capitalized - 0 is the first letter capitalized and substring will hold the rest of the letters
-            var pokeName = document.createElement ("p");
-            pokeName.textContent = data.name[0].toUpperCase() + data.name.substring(1);
+            var p = document.createElement ("p");
+            var pokeName = data.name[0].toUpperCase() + data.name.substring(1);
+            p.textContent = pokeName;
             //Make the section visible
             var yourTeam = document.getElementById("yourTeam");
             yourTeam.classList.remove("hidden");
             //Add animations to the image and text
-            pokePic.className = "fade-in";
-            pokeName.className = "fade-in";
+            img.className = "fade-in";
+            p.className = "fade-in";
 
             pokeType = data.types[0].type.name;
-            console.log(pokeType);
+
+            saveUserPokemon(pokeName, pokePic, pokeType);
             
             //Add the div to the section, and the img and p to the div
             yourTeam.appendChild(container);
-            container.appendChild(pokePic);
-            container.appendChild(pokeName);
+            container.appendChild(img);
+            container.appendChild(p);
         })
     }
     setTimeout(function() {   //  call a 1.5s setTimeout before the computer's team show up                 
@@ -420,19 +426,25 @@ function makeTeams() {
                 //create elements and set classes, text-content, and attributes
                 var container = document.createElement("div");
                 container.className = "inline-block";
-                var pokePic = document.createElement("img");
-                pokePic.setAttribute("src", data.sprites.front_default);
-                pokePic.className = "fade-in";
-                var pokeName = document.createElement ("p");
-                pokeName.textContent = data.name[0].toUpperCase() + data.name.substring(1);
+                var img = document.createElement("img");
+                var pokePic = data.sprites.front_default;
+                img.setAttribute("src", pokePic);
+                img.className = "fade-in";
+                var p = document.createElement ("p");
+                var pokeName = data.name[0].toUpperCase() + data.name.substring(1);
+                p.textContent = pokeName;
                 pokeName.className = "fade-in";
                 var computerTeam = document.getElementById("computerTeam");
                 computerTeam.classList.remove("hidden");
+
+                pokeType = data.types[0].type.name;
+
+                saveCpuPokemon(pokeName, pokePic, pokeType);
                 
                 //Append the divs to the computer section and the img and p tags to the div
                 computerTeam.appendChild(container);
-                container.appendChild(pokePic);
-                container.appendChild(pokeName);
+                container.appendChild(img);
+                container.appendChild(p);
             })
         }
     }, 1500) //end of timeout
@@ -455,6 +467,49 @@ function makeTeams() {
     }, 3000)
 }
 
+
+var saveUserPokemon = function (pokeName, pokePic, pokeType) {
+    var oldPokemon = JSON.parse(localStorage.getItem('userPokemon')) || [];
+    var match = oldPokemon.find(function (pokemon) {
+        return pokemon['name'] === pokeName;
+    });
+    if (match) {
+        match['picture'] += pokePic;
+        match['type'] += pokeType;
+    } else {
+        var newPokemon = {
+            'name': pokeName,
+            'picture': pokePic,
+            'type': pokeType
+        };
+        oldPokemon.push(newPokemon);
+    }
+    localStorage.setItem('userPokemon', JSON.stringify(oldPokemon));
+
+    console.log(oldPokemon);
+};
+
+
+var saveCpuPokemon = function (pokeName, pokePic, pokeType) {
+    var oldPokemon = JSON.parse(localStorage.getItem('cpuPokemon')) || [];
+    var match = oldPokemon.find(function (pokemon) {
+        return pokemon['name'] === pokeName;
+    });
+    if (match) {
+        match['picture'] += pokePic;
+        match['type'] += pokeType;
+    } else {
+        var newPokemon = {
+            'name': pokeName,
+            'picture': pokePic,
+            'type': pokeType
+        };
+        oldPokemon.push(newPokemon);
+    }
+    localStorage.setItem('cpuPokemon', JSON.stringify(oldPokemon));
+
+    console.log(oldPokemon);
+};
 
 var container2 = document.getElementById("container2");
 
@@ -481,8 +536,8 @@ function moveBegins() {
     }
     //!check with Zac to see what fainting is called, plug in as "movesBegin"
     if (moveBegins = true) {
-        // var yourBigPoke = document.getElementById("your-poke-image");
-        // yourBigPoke.setAttribute("src", data.sprites.front_default);
+        var yourBigPoke = document.getElementById("your-poke-image");
+        yourBigPoke.setAttribute("src", data.sprites.front_default);
     } 
 
     completeCpuMove();
