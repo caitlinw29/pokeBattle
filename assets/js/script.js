@@ -467,7 +467,7 @@ function makeTeams() {
     }, 3000)
 }
 
-
+//Save the user pokemon in an array of objects. Each pokemon will have the name, picture, and type stored
 var saveUserPokemon = function (pokeName, pokePic, pokeType) {
     var oldPokemon = JSON.parse(localStorage.getItem('userPokemon')) || [];
     var match = oldPokemon.find(function (pokemon) {
@@ -489,7 +489,7 @@ var saveUserPokemon = function (pokeName, pokePic, pokeType) {
     console.log(oldPokemon);
 };
 
-
+//Save the cpu pokemon in an array of objects. Each pokemon will have the name, picture, and type stored
 var saveCpuPokemon = function (pokeName, pokePic, pokeType) {
     var oldPokemon = JSON.parse(localStorage.getItem('cpuPokemon')) || [];
     var match = oldPokemon.find(function (pokemon) {
@@ -536,13 +536,17 @@ function moveBegins() {
     }
     //!check with Zac to see what fainting is called, plug in as "movesBegin"
     if (moveBegins = true) {
-        var yourBigPoke = document.getElementById("your-poke-image");
-        yourBigPoke.setAttribute("src", data.sprites.front_default);
+        
+        // JSON.parse(localStorage.getItem("userPokemon"));
+        // var yourBigPoke = document.getElementById("your-poke-image");
+        // yourBigPoke.setAttribute("src", userPokemon[0].picture);
     } 
 
     completeCpuMove();
 }
 
+var cpuMove;
+//save a bank of 4 moves from the CPU's type. Randomly select one of those moves, and store it to be used in the completeCpuMove function
 function storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves) {
     for (let i = 0; i < numOfGenOneMoves; i++) {
         randomizedArray.push(value[i]);
