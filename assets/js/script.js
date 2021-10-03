@@ -326,6 +326,9 @@ fetchMoveData();
 
 //     var pokemonHitPoints = 200;
 // }
+var pokeArray = [];
+var opponentArray = [];
+
 
 // userPokemonType();
 // enemyPokemonType();
@@ -339,7 +342,7 @@ var pokeType;
 var cpuPokeType;
 
 
-//Use min and max to generatte a random number within a range
+//Use min and max to generate a random number within a range
 function getRandomNum(min, max) {
     return Math.floor(Math.random() * (max - min + 1));
 }
@@ -510,6 +513,57 @@ var saveCpuPokemon = function (pokeName, pokePic, pokeType) {
 
     console.log(oldPokemon);
 };
+console.log(pokeArray);
+console.log(opponentArray);
+
+
+
+// Fainting/Win/Lose Conditions - Zac 
+
+
+// Functions for HP, user & computer.
+
+
+
+
+
+// User HP
+
+let userHealth = document.getElementById('userHealth');
+
+function loseUserHp (power){
+    userHealth.value -= power;
+    console.log(userHealth.value);
+    while (userHealth.value > 0) {
+        notFaintedYet();
+        return;
+    } if (userHealth.value === 0){
+        function hasFaintedUser();
+    }
+}
+
+
+// Computer HP
+
+let computerHealth =  document.getElementById('computerHealth');
+
+function loseComputerHp (power){
+    computerHealth.value -= power;
+    console.log(computerHealth.value);
+    while (computerHealth.value > 0){
+        notFaintedYet();
+        return;
+    } if (computerHealth === 0){
+        function hasFaintedComputer();
+    }
+}
+
+
+
+
+function hasFainted() { 
+    // The location of individual Pokémon within the array can be identified with array
+    // index, and removed when their HP goes to zero per the functions above.
 
 var container2 = document.getElementById("container2");
 
@@ -576,5 +630,38 @@ function storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves) 
 function completeCpuMove() {
 
 }
+
+}  
+}
+
+
+//  Functions that loop through the images with class names stored in variables
+// userImages and computerImages.  They are called by the functions above that check to
+// see if a pokemon's hp has reached zero.  When it does, these functions are called and 
+// their pictures are given dark overlays, meaning that they have 'fainted'.
+
+
+
+var userImages = document.getElementsByClassName('userHpOverlay');
+
+function hasFaintedUser(){
+    for(var i = 0; i<userImages.length; i++){
+        userImages[i].style.display = 'block';
+    }
+}
+
+var computerImages = document.getElementsByClassName('compHpOverlay');
+
+function hasFaintedComputer(){
+    for(var i = 0; i<computerImages.length; i++)
+        computerImages[i].style.display = 'block';
+}
+
+var notFainted = document.querySelectorAll('.compHpOverlay, .userHpOverlay');
+
+function notFaintedYet(){
+    notFainted.style.display = 'none';
+}
+
 
 
