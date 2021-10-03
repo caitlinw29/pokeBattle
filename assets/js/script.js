@@ -653,9 +653,9 @@ function moveBegins() {
             userImages[i].classList.add("overlay");
         }
         
-        JSON.parse(localStorage.getItem("userPokemon"));
-        var yourBigPoke = document.getElementById("your-poke-image");
-        yourBigPoke.setAttribute("src", userPokemon[0].picture);
+        // JSON.parse(localStorage.getItem("userPokemon"));
+        // var yourBigPoke = document.getElementById("your-poke-image");
+        // yourBigPoke.setAttribute("src", userPokemon[0].picture);
     } 
     if (hasFaintedComputer = true) {
         for(var i = 0; i<computerImages.length; i++) {
