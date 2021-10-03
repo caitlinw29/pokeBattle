@@ -513,6 +513,11 @@ var saveCpuPokemon = function (pokeName, pokePic, pokeType) {
 
     console.log(oldPokemon);
 };
+
+
+
+
+
 console.log(pokeArray);
 console.log(opponentArray);
 
@@ -538,7 +543,7 @@ function loseUserHp (power){
         notFaintedYet();
         return;
     } if (userHealth.value === 0){
-        function hasFaintedUser();
+        hasFaintedUser();
     }
 }
 
@@ -554,7 +559,7 @@ function loseComputerHp (power){
         notFaintedYet();
         return;
     } if (computerHealth === 0){
-        function hasFaintedComputer();
+        hasFaintedComputer();
     }
 }
 
@@ -564,7 +569,7 @@ function loseComputerHp (power){
 function hasFainted() { 
     // The location of individual Pokémon within the array can be identified with array
     // index, and removed when their HP goes to zero per the functions above.
-
+}
 var container2 = document.getElementById("container2");
 
 function showBattle(){
@@ -579,6 +584,8 @@ for(var i=0; i<battleBtns.length; i++){
 
 function moveBegins() {
     console.log("this is working yay");
+    var showTeam = document.getElementById("showTeam");
+    // showTeam.classList.remove()
     var flipCoin = Math.floor(Math.random() * 2);
     if(flipCoin === 0){
         //input functionality of pokemon making a move and hp bar lowering
@@ -589,12 +596,20 @@ function moveBegins() {
         //input functionality of pokemon making a move and hp bar lowering
     }
     //!check with Zac to see what fainting is called, plug in as "movesBegin"
-    if (moveBegins = true) {
+    if (hasFaintedUser = true) {
+        for(var i = 0; i<userImages.length; i++) {
+            userImages[i].classList.add("overlay");
+        }
         
         // JSON.parse(localStorage.getItem("userPokemon"));
         // var yourBigPoke = document.getElementById("your-poke-image");
         // yourBigPoke.setAttribute("src", userPokemon[0].picture);
     } 
+    if (hasFaintedComputer = true) {
+        for(var i = 0; i<computerImages.length; i++) {
+            computerImages[i].classList.add("overlay");
+        }
+    }
 
     completeCpuMove();
 }
@@ -630,9 +645,8 @@ function storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves) 
 function completeCpuMove() {
 
 }
+ 
 
-}  
-}
 
 
 //  Functions that loop through the images with class names stored in variables
@@ -642,26 +656,26 @@ function completeCpuMove() {
 
 
 
-var userImages = document.getElementsByClassName('userHpOverlay');
+var userImages = document.getElementsByClassName('overlay');
 
-function hasFaintedUser(){
-    for(var i = 0; i<userImages.length; i++){
-        userImages[i].style.display = 'block';
-    }
-}
+// function hasFaintedUser(){
+//     for(var i = 0; i<userImages.length; i++){
+//         userImages[i].style.display = 'block';
+//     }
+// }
 
-var computerImages = document.getElementsByClassName('compHpOverlay');
+var computerImages = document.getElementsByClassName('overlay');
 
-function hasFaintedComputer(){
-    for(var i = 0; i<computerImages.length; i++)
-        computerImages[i].style.display = 'block';
-}
+// function hasFaintedComputer(){
+//     // for(var i = 0; i<computerImages.length; i++) {
+//     //     computerImages[i].style.display = 'block';
+//     // }
+// }
+// var notFainted = document.querySelectorAll('.compHpOverlay, .userHpOverlay');
 
-var notFainted = document.querySelectorAll('.compHpOverlay, .userHpOverlay');
-
-function notFaintedYet(){
-    notFainted.style.display = 'none';
-}
+// function notFaintedYet(){
+//     notFainted.style.display = 'none';
+// }
 
 
 
