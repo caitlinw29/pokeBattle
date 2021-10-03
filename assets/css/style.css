@@ -69,6 +69,21 @@ body{
     text-shadow: 2px 2px rgb(80, 17, 13);
 }
 
+
+.progress {
+    width: 400px;
+    padding: 2px;
+    margin: 50px auto;
+    border: 3px solid #05e35e;
+    height: 35px;
+}
+
+.progress .progressBar {
+    height: 100%;
+    width: 100%;
+    background-color: #05e35e;
+}
+
 /*Use on pictures of pokemon when making the teams*/
 .fade-in {
     animation: fadeIn 3s;
@@ -78,5 +93,33 @@ body{
     0% {opacity:0;}
     100% {opacity:1;}
 }
+
+/* Overlay color on the fainted pokemon */
+
+.userHpOverlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    opacity: .5;
+  }
+
+.compHpOverlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    opacity: .5;
+  }
 
 
