@@ -5,9 +5,9 @@ let button4 = document.getElementById('button4');
 
 
 //Variable of user's pokemon...could also change to ID number if needed
-var pokemonExampleType = "normal";
 
-function fetchMoveData(){
+function fetchMoveData(pokemonType){
+    var pokemonExampleType = pokemonType;
     let url = 'https://pokeapi.co/api/v2/type/';
     
     //Fetches the moves of the type passed in
@@ -241,7 +241,7 @@ function movePower(){
       return response.json();
     })
     .then(function (data) { 
-        // console.log(data);      //Consoles the data path which shows attack move
+        console.log(data);      //Consoles the data path which shows attack move
         var power = data.power;
         if(power === null){
             var hitOrMiss = Math.floor(Math.random() * 2);  //some moves return null because they don't do damage...in this game they have a 50/50 chance of missing or damaging 50
@@ -253,32 +253,30 @@ function movePower(){
                 power = 50;
             }
         }
-        // console.log(power);
-        loseHP(power);
+        console.log(power);
+        // loseHP(power);
     })
 }
 
 
-let health = document.getElementById('health');
 
-function loseHP(power){
-    console.log("Current HP: " + health.value);
-    console.log("Damage done: "  + power);
-    health.value -= power;
-    console.log("HP left: " + health.value);
-    if(health.value === 0){
-        console.log("Pokemon Fainted");
-    }
-
-
-}
+// let health = document.getElementById('health');
+// function loseHP(power){
+//     console.log("Current HP: " + health.value);
+//     console.log("Damage done: "  + power);
+//     health.value -= power;
+//     console.log("HP left: " + health.value);
+//     if(health.value === 0){
+//         console.log("Pokemon Fainted");
+//     }
+// }
 
 
 
 
 
 
-fetchMoveData();
+// fetchMoveData();
 
 //Not sure If i need lines 221 to 279 but will keep for now.
 
@@ -474,7 +472,7 @@ function makeTeams() {
 
             })
         } 
-    }, 1500) //end of timeout
+    }, 1000) //end of timeout
 
     //function will display the teams on the battle page
     function battleBtnDisplayTeams(){ 
@@ -511,7 +509,7 @@ function makeTeams() {
         //After appending the button, if it is clicked, showBattle function runs
         container1.appendChild(battlePageBtn).addEventListener("click", showBattle);
         battlePageBtn.addEventListener("click", battleBtnDisplayTeams);
-    }, 2000)
+    }, 1500)
 }
 
 
@@ -536,8 +534,10 @@ var saveUserPokemon = function (pokeName, pokePic, pokeType) {
         oldPokemon.push(newPokemon);
     }
     localStorage.setItem('userPokemon', JSON.stringify(oldPokemon));
-
-    console.log(oldPokemon);
+    console.log(oldPokemon[0]);
+    console.log("User Pokemon: " + oldPokemon[0].name);
+    var pokemonType = oldPokemon[0].type;
+    fetchMoveData(pokemonType);
 };
 
 //Save the cpu pokemon in an array of objects. Each pokemon will have the name, picture, and type stored
@@ -626,9 +626,8 @@ for(var i=0; i<battleBtns.length; i++){
 
 
 function moveBegins() {
-    console.log("this is working yay");
+    console.log("Move Begins");
 
-    
     var showTeam = document.getElementById("showTeam");
     // showTeam.classList.remove()
     var flipCoin = Math.floor(Math.random() * 2);
