@@ -37,6 +37,7 @@ function fetchMoveData(){
                 let numOfGenOneMoves = 23;
                 console.log("Normal Moves");
                 displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+                storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
             });
             break;
         }
@@ -47,6 +48,7 @@ function fetchMoveData(){
                 let numOfGenOneMoves = 7;
                 console.log("Fighting Moves");
                 displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+                storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
             });
             break;
         }
@@ -57,6 +59,7 @@ function fetchMoveData(){
                let numOfGenOneMoves = 7;
                console.log("Flying Moves");
                displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+               storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
            });
            break;
         }
@@ -67,6 +70,7 @@ function fetchMoveData(){
             let numOfGenOneMoves = 7;
             console.log("Poison Moves");
             displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+            storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
         });
         break;
         }
@@ -77,6 +81,7 @@ function fetchMoveData(){
             let numOfGenOneMoves = 6;
             console.log("Ground Moves");
             displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+            storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
         });
         break;
         }
@@ -87,6 +92,7 @@ function fetchMoveData(){
             let numOfGenOneMoves = 4;
             console.log("Rock Moves");
             displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+            storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
         });
         break;
         }
@@ -97,6 +103,7 @@ function fetchMoveData(){
             let numOfGenOneMoves = 7;
             console.log("Bug Moves");
             displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+            storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
         });
         break;
         }
@@ -107,6 +114,7 @@ function fetchMoveData(){
             let numOfGenOneMoves = 4;
             console.log("Ghost Moves");
             displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+            storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
         });
         break;
         }
@@ -117,6 +125,7 @@ function fetchMoveData(){
             let numOfGenOneMoves = 5;
             console.log("Fire Moves");
             displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+            storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
         });
         break;
         }
@@ -127,6 +136,7 @@ function fetchMoveData(){
             let numOfGenOneMoves = 9;
             console.log("Water Moves");
             displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+            storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
         });
         break;
         }
@@ -137,6 +147,7 @@ function fetchMoveData(){
             let numOfGenOneMoves = 10;
             console.log("Grass Moves");
             displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+            storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
         });
         break;
         }
@@ -147,6 +158,7 @@ function fetchMoveData(){
             let numOfGenOneMoves = 5;
             console.log("Electric Moves");
             displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+            storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
         });
         break;
         }
@@ -157,6 +169,7 @@ function fetchMoveData(){
             let numOfGenOneMoves = 4;
             console.log("Psychic Moves");
             displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+            storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
         });
         break;
         }
@@ -167,6 +180,7 @@ function fetchMoveData(){
             let numOfGenOneMoves = 5;
             console.log("Ice Moves");
             displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+            storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
         });
         break;
         }
@@ -177,6 +191,7 @@ function fetchMoveData(){
             let numOfGenOneMoves = 4;
             console.log("Dragon Moves");
             displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+            storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
         });
         break;
         }
@@ -217,7 +232,7 @@ function displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves){
 
 //When user clicks on a move button it brings up the power of the move
 function movePower(){
-    var moveName = this.event.path[0].childNodes[0].nodeValue   //goes through button path to find name of the move
+    var moveName = this.event.path[0].childNodes[0].nodeValue;   //goes through button path to find name of the move
     console.log(moveName);
     var powerURL = "https://pokeapi.co/api/v2/move/" + moveName;
 
@@ -320,6 +335,8 @@ fetchMoveData();
 
 var createTeams = document.getElementById("makeTeams");
 createTeams.addEventListener("click", makeTeams);
+var pokeType; 
+var cpuPokeType;
 
 
 //Use min and max to generatte a random number within a range
@@ -363,6 +380,7 @@ function makeTeams() {
             return response.json();
         })
         .then(function (data) { 
+            console.log(data);
             //...create a div to store an img and p tag.
             var container = document.createElement("div");
             container.className = "inline-block";
@@ -378,6 +396,9 @@ function makeTeams() {
             //Add animations to the image and text
             pokePic.className = "fade-in";
             pokeName.className = "fade-in";
+
+            pokeType = data.types[0].type.name;
+            console.log(pokeType);
             
             //Add the div to the section, and the img and p to the div
             yourTeam.appendChild(container);
@@ -429,12 +450,12 @@ function makeTeams() {
     var container1 = document.getElementById("container1");
     //call a 3s setTimeout before the battle button is made visible
     setTimeout(function() {   
+        //After appending the button, if it is clicked, showBattle function runs
         container1.appendChild(battlePageBtn).addEventListener("click", showBattle);
     }, 3000)
 }
 
 
-// battleBtn.addEventListener("click", showBattle);
 var container2 = document.getElementById("container2");
 
 function showBattle(){
@@ -444,15 +465,57 @@ function showBattle(){
 
 var battleBtns = document.getElementsByClassName("battle-move");
 for(var i=0; i<battleBtns.length; i++){
-    battleBtns[i].addEventListener("click", movesBegin);
+    battleBtns[i].addEventListener("click", moveBegins);
 }
 
-function movesBegin() {
+function moveBegins() {
     console.log("this is working yay");
+    var flipCoin = Math.floor(Math.random() * 2);
+    if(flipCoin === 0){
+        //input functionality of pokemon making a move and hp bar lowering
+        completeCpuMove();
+    }
+    else{
+        completeCpuMove();
+        //input functionality of pokemon making a move and hp bar lowering
+    }
     //!check with Zac to see what fainting is called, plug in as "movesBegin"
-    if (movesBegin = true) {
-        var yourBigPoke = document.getElementById("your-poke-image");
+    if (moveBegins = true) {
+        // var yourBigPoke = document.getElementById("your-poke-image");
         // yourBigPoke.setAttribute("src", data.sprites.front_default);
+    } 
+
+    completeCpuMove();
+}
+
+function storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves) {
+    for (let i = 0; i < numOfGenOneMoves; i++) {
+        randomizedArray.push(value[i]);
+    }
+    // console.log(randomizedArray);
+    let currentIndex = randomizedArray.length;
+
+    
+    //Shuffles all the moves in the type array
+    while (currentIndex != 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        [randomizedArray[currentIndex], randomizedArray[randomIndex]] =
+            [randomizedArray[randomIndex], randomizedArray[currentIndex]];
+    }
+
+    //Picks the first 4 index values of the shuffled array and displays them to each button
+    for (let i = 0; i < 1; i++) {
+        finalFourMoves.push(randomizedArray[i]);
     }
     
+    //Create cpuMove by pulling a random move from the 4 CPU moves
+    cpuMove = randomizedArray[i].name;
 }
+
+function completeCpuMove() {
+
+}
+
+
