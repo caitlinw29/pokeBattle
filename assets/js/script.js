@@ -5,7 +5,9 @@ let button4 = document.getElementById('button4');
 
 
 //Variable of user's pokemon...could also change to ID number if needed
-var pokemonExampleType = "normal";
+ var pokemonExampleType = "normal";
+// var pokemonExampleType = JSON.parse(localStorage.getItem('userPokemon'));
+// console.log(pokemonExampleType[0].type);
 
 function fetchMoveData(){
     let url = 'https://pokeapi.co/api/v2/type/';
