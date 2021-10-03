@@ -233,7 +233,7 @@ function displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves){
 //When user clicks on a move button it brings up the power of the move
 function movePower(){
     var moveName = this.event.path[0].childNodes[0].nodeValue;   //goes through button path to find name of the move
-    console.log(moveName);
+    console.log("Pokemon used " + moveName);
     var powerURL = "https://pokeapi.co/api/v2/move/" + moveName;
 
     fetch(powerURL)
@@ -254,7 +254,7 @@ function movePower(){
             }
         }
         console.log(power);
-        // loseHP(power);
+        loseComputerHp(power)
     })
 }
 
@@ -593,15 +593,14 @@ function loseUserHp (power){
 // Computer HP
 
 let computerHealth =  document.getElementById('computerHealth');
-
-function loseComputerHp (power){
+console.log("Computer Health: " + computerHealth.value);
+function loseComputerHp(power){
+    console.log("Current HP: " + computerHealth.value);
+    console.log("Damage done: "  + power);
     computerHealth.value -= power;
-    console.log(computerHealth.value);
-    while (computerHealth.value > 0){
-        notFaintedYet();
-        return;
-    } if (computerHealth === 0){
-        hasFaintedComputer();
+    console.log("HP left: " + computerHealth.value);
+    if(computerHealth.value === 0){
+        console.log("Pokemon Fainted");
     }
 }
 
