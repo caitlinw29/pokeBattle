@@ -232,6 +232,7 @@ function displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves){
     button4.textContent = finalFourMoves[3].name;
 };
 
+var battleText= document.getElementById("battleText");
 //When user clicks on a move button it brings up the power of the move
 function movePower(){
     var moveName = this.event.path[0].childNodes[0].nodeValue;   //goes through button path to find name of the move
@@ -249,11 +250,26 @@ function movePower(){
             var hitOrMiss = Math.floor(Math.random() * 2);  //some moves return null because they don't do damage...in this game they have a 50/50 chance of missing or damaging 50
             console.log(hitOrMiss);
             if(hitOrMiss === 0){
-                console.log("Pokemon Missed!");
+                var missText = document.createElement("p");
+                missText.textContent = "Missed!"
+                battleText.appendChild(missText);
             }
             else{
                 power = 50;
+                var hitText = document.createElement("p");
+                hitText.textContent = "Direct hit!"
+                battleText.appendChild(hitText);
+                setTimeout(function() {   
+                    battleText.removeChild(hitText);
+                }, 1000)
             }
+        } else {
+            var hitText = document.createElement("p");
+            hitText.textContent = "Direct hit!"
+            battleText.appendChild(hitText);
+            setTimeout(function() {   
+                battleText.removeChild(hitText);
+            }, 1000)
         }
         console.log(power);
         localStorage.setItem("power", power);
@@ -466,8 +482,9 @@ function makeTeams() {
 
             })
         } 
-    }, 1500) //end of timeout
-
+    }, 1000) //end of timeout
+    
+    var overlay;
     //function will display the teams on the battle page
     function battleBtnDisplayTeams(){ 
         //creating images for each pokemon on both the user team, and the cpu team
@@ -475,8 +492,10 @@ function makeTeams() {
         for (i=0; i<playerSpritesArray.length; i++) {
             var img = document.createElement("img");
             img.setAttribute("src", playerSpritesArray[i]);
+            img.setAttribute("id", "pokemon" + i);
             var playerTeam = document.getElementById("playerTeam");
             playerTeam.appendChild(img);
+            // overlay = document.getElementById(pokemon[i]);
         }
 
         for (i=0; i<cpuSpritesArray.length; i++) {
@@ -616,14 +635,6 @@ function loseComputerHp (power){
 }
 
 
-
-
-function hasFainted() { 
-    // The location of individual Pokémon within the array can be identified with array
-    // index, and removed when their HP goes to zero per the functions above.
-}
-
-
 function showBattle(){
     container2.classList.remove("hidden");
     container1.classList.add("hidden");
@@ -637,36 +648,48 @@ for(var i=0; i<battleBtns.length; i++){
 
 function moveBegins() {
     console.log("this is working yay");
-    loseComputerHp(power);
-    loseUserHp(power);
+    // loseComputerHp(power);
+    // loseUserHp(power);
     
     
     var flipCoin = Math.floor(Math.random() * 2);
     if(flipCoin === 0){
-        //input functionality of pokemon making a move and hp bar lowering
-        completeCpuMove();
+        completeUserMove();
+        setTimeout(function() {   
+            completeCpuMove();
+        }, 2000)
+        
     }
     else{
         completeCpuMove();
-        //input functionality of pokemon making a move and hp bar lowering
+        setTimeout(function() {   
+            completeUserMove();
+        }, 2000)
+    
     }
-    //!check with Zac to see what fainting is called, plug in as "movesBegin"
-    if (moveBegins = true) {
+
+}
+
+function completeUserMove(){
+    // loseComputerHp(power);
+    var yourBigPoke = document.getElementById("your-poke-image");
+    yourBigPoke.classList.add("object");
+    yourBigPoke.classList.add("move-right");
+    setTimeout(function() {   
+        yourBigPoke.classList.remove("move-right");
+    }, 500)
+
+    
+    
+    if (hasFaintedUser = true) {
         for(var i = 0; i<userImages.length; i++) {
             userImages[i].classList.add("overlay");
         }
-        
-        // JSON.parse(localStorage.getItem("userPokemon"));
-        // var yourBigPoke = document.getElementById("your-poke-image");
-        // yourBigPoke.setAttribute("src", userPokemon[0].picture);
-    } 
-    if (hasFaintedComputer = true) {
-        for(var i = 0; i<computerImages.length; i++) {
-            computerImages[i].classList.add("overlay");
-        }
-    }
 
-    completeCpuMove();
+        var newBigPic = JSON.parse(localStorage.getItem("userPokemon"));
+        
+        yourBigPoke.setAttribute("src", newBigPic[1].picture);
+    } 
 }
 
 var cpuMove;
@@ -698,6 +721,23 @@ function storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves) 
 }
 
 function completeCpuMove() {
+    // loseUserHp(power);
+    var cpuBigPoke = document.getElementById("cpu-poke-image");
+    cpuBigPoke.classList.add("object");
+    cpuBigPoke.classList.add("move-left");
+    setTimeout(function() {   
+        cpuBigPoke.classList.remove("move-left");
+    }, 500)
+    if (hasFaintedComputer = true) {
+
+        for(var i = 0; i<computerImages.length; i++) {
+            computerImages[i].classList.add("overlay");
+        }
+        
+        var newBigPic = JSON.parse(localStorage.getItem("cpuPokemon"));
+        var cpuBigPoke = document.getElementById("cpu-poke-image");
+        cpuBigPoke.setAttribute("src", newBigPic[1].picture);
+    }
 
 }
  
