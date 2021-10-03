@@ -1,331 +1,260 @@
-//stop at id 16....17 are gen 2 types
-//You have an array of each of the types of the moves
 let button1 = document.getElementById('button1');
 let button2 = document.getElementById('button2');
 let button3 = document.getElementById('button3');
 let button4 = document.getElementById('button4');
 
-let url = 'https://pokeapi.co/api/v2/type/';
-async function retrieveType(type) {
-	let typeArray = [];
-	await fetch(url + type)
-		.then((res) => {
-			return res.json();
-		})
-		.then((data) => {
-			data.moves.forEach((moves) => {
-				return typeArray.push(moves);
-			});
-		});
-	return typeArray;
-}
-//stop at id 16....17 are gen 2 types.
-var allMoves = []
 
-// You run a function that chooses a random pokemon OR the user chooses the pokemon
-// You already know the TYPE of the pokemon
-// Use a switch case statement to choose WHICH of these retrieveType functions to run
-// and then run these functions inside of them
-// Then the textContent would display and you don't have to attach/associate these moves with a particular pokemon.
+//Variable of user's pokemon...could also change to ID number if needed
+var pokemonExampleType = "normal";
 
-retrieveType(1).then((value) => {
-	let randomizedNormalArray = [];
-	let finalFourMoves = [];
-	let genOneNormalMoves = 23;
-	for (let i = 0; i < genOneNormalMoves; i++) {
-		randomizedNormalArray.push(value[i]);
-	}
-
-	console.log(randomizedNormalArray);
-	let currentIndex = randomizedNormalArray.length,
-		randomIndex;
-
-	// While there remain elements to shuffle...
-	while (currentIndex != 0) {
-		// Pick a remaining element...
-		randomIndex = Math.floor(Math.random() * currentIndex);
-		currentIndex--;
-
-		// And swap it with the current element.
-		[randomizedNormalArray[currentIndex], randomizedNormalArray[randomIndex]] =
-			[randomizedNormalArray[randomIndex], randomizedNormalArray[currentIndex]];
-	}
-	for (let i = 0; i < 4; i++) {
-        finalFourMoves.push(randomizedNormalArray[i]);
+function fetchMoveData(){
+    let url = 'https://pokeapi.co/api/v2/type/';
     
-	}
+    //Fetches the moves of the type passed in
+    async function retrieveType(type) {
+        let typeArray = [];
+        await fetch(url + type)
+            .then((res) => {
+                return res.json();
+            })
+            .then((data) => {
+                data.moves.forEach((moves) => {
+                    return typeArray.push(moves);
+                });
+            });
+            // console.log(typeArray)
+                return typeArray;
+    }
+    console.log("Chosen PokemonType: " + pokemonExampleType);
+
+    //Depending on the pokemon chosen, it's type will generate 4 random moves of the same type
+    //Switch Statements include the type chosen, the number of moves included in the first generation, and a random array of 4 moves
+    switch(pokemonExampleType){
+        case "normal": {
+            retrieveType(1).then((value) => {
+                let randomizedArray = [];
+                let finalFourMoves = [];
+                let numOfGenOneMoves = 23;
+                console.log("Normal Moves");
+                displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+            });
+            break;
+        }
+        case "fighting": {
+             retrieveType(2).then((value) => {
+                let randomizedArray = [];
+                let finalFourMoves = [];
+                let numOfGenOneMoves = 7;
+                console.log("Fighting Moves");
+                displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+            });
+            break;
+        }
+        case "flying": {
+            retrieveType(3).then((value) => {
+               let randomizedArray = [];
+               let finalFourMoves = [];
+               let numOfGenOneMoves = 7;
+               console.log("Flying Moves");
+               displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+           });
+           break;
+        }
+        case "poison": {
+            retrieveType(4).then((value) => {
+            let randomizedArray = [];
+            let finalFourMoves = [];
+            let numOfGenOneMoves = 7;
+            console.log("Poison Moves");
+            displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+        });
+        break;
+        }
+        case "ground": {
+            retrieveType(5).then((value) => {
+            let randomizedArray = [];
+            let finalFourMoves = [];
+            let numOfGenOneMoves = 6;
+            console.log("Ground Moves");
+            displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+        });
+        break;
+        }
+        case "rock": {
+            retrieveType(6).then((value) => {
+            let randomizedArray = [];
+            let finalFourMoves = [];
+            let numOfGenOneMoves = 4;
+            console.log("Rock Moves");
+            displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+        });
+        break;
+        }
+        case "bug": {
+            retrieveType(7).then((value) => {
+            let randomizedArray = [];
+            let finalFourMoves = [];
+            let numOfGenOneMoves = 7;
+            console.log("Bug Moves");
+            displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+        });
+        break;
+        }
+        case "ghost": {
+            retrieveType(8).then((value) => {
+            let randomizedArray = [];
+            let finalFourMoves = [];
+            let numOfGenOneMoves = 4;
+            console.log("Ghost Moves");
+            displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+        });
+        break;
+        }
+        case "fire": {
+            retrieveType(10).then((value) => {
+            let randomizedArray = [];
+            let finalFourMoves = [];
+            let numOfGenOneMoves = 5;
+            console.log("Fire Moves");
+            displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+        });
+        break;
+        }
+        case "water": {
+            retrieveType(11).then((value) => {
+            let randomizedArray = [];
+            let finalFourMoves = [];
+            let numOfGenOneMoves = 9;
+            console.log("Water Moves");
+            displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+        });
+        break;
+        }
+        case "grass": {
+            retrieveType(12).then((value) => {
+            let randomizedArray = [];
+            let finalFourMoves = [];
+            let numOfGenOneMoves = 10;
+            console.log("Grass Moves");
+            displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+        });
+        break;
+        }
+        case "electric": {
+            retrieveType(13).then((value) => {
+            let randomizedArray = [];
+            let finalFourMoves = [];
+            let numOfGenOneMoves = 5;
+            console.log("Electric Moves");
+            displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+        });
+        break;
+        }
+        case "psychic": {   //One possible issue to address later is Hypnosis Move doesn't do damage but puts enemy pokemon to sleep
+            retrieveType(14).then((value) => {
+            let randomizedArray = [];
+            let finalFourMoves = [];
+            let numOfGenOneMoves = 4;
+            console.log("Psychic Moves");
+            displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+        });
+        break;
+        }
+        case "ice": {
+            retrieveType(15).then((value) => {
+            let randomizedArray = [];
+            let finalFourMoves = [];
+            let numOfGenOneMoves = 5;
+            console.log("Ice Moves");
+            displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+        });
+        break;
+        }
+        case "dragon": {
+            retrieveType(16).then((value) => {
+            let randomizedArray = [];
+            let finalFourMoves = [];
+            let numOfGenOneMoves = 4;
+            console.log("Dragon Moves");
+            displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves);
+        });
+        break;
+        }
+    }
+}
+ 
+//Takes the values from chosen switch statement. Shuffles the total number of moves per type
+//Then pushes the moves into randomizedArray. Then the first 4 values of that array are chosen
+//and displayed as each button.
+function displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves){
+    for (let i = 0; i < numOfGenOneMoves; i++) {
+        randomizedArray.push(value[i]);
+    }
+    // console.log(randomizedArray);
+    let currentIndex = randomizedArray.length;
+
+    
+    //Shuffles all the moves in the type array
+    while (currentIndex != 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        [randomizedArray[currentIndex], randomizedArray[randomIndex]] =
+            [randomizedArray[randomIndex], randomizedArray[currentIndex]];
+    }
+
+    //Picks the first 4 index values of the shuffled array and displays them to each button
+    for (let i = 0; i < 4; i++) {
+        finalFourMoves.push(randomizedArray[i]);
+    }
+    console.log(finalFourMoves);
+    //Each button is named after a move
     button1.textContent = finalFourMoves[0].name;
     button2.textContent = finalFourMoves[1].name;
     button3.textContent = finalFourMoves[2].name;
     button4.textContent = finalFourMoves[3].name;
+};
 
-});
+//When user clicks on a move button it brings up the power of the move
+function movePower(){
+    var moveName = this.event.path[0].childNodes[0].nodeValue   //goes through button path to find name of the move
+    console.log(moveName);
+    var powerURL = "https://pokeapi.co/api/v2/move/" + moveName;
 
-// retrieveType(2).then((value) => {
-// 	console.log(value);
-// });
-
-// retrieveType(3).then((value) => {
-// 	console.log(value);
-// });
-
-// retrieveType(4).then((value) => {
-// 	console.log(value);
-// });
-// retrieveType(5).then((value) => {
-// 	console.log(value);
-// });
-// retrieveType(6).then((value) => {
-// 	console.log(value);
-// });
-// retrieveType(7).then((value) => {
-// 	console.log(value);
-// });
-
-
-
-
-
-
-
-
-//         console.log('what is this data', data)
-//         for(var i = 0 ; i < data.results.length; i++){
-//             var type = data.results[i].name;
-//             // console.log(type);
-
-// //MVP just one button to "attack".
-// //game more based on types and moves that are super effective
-
-//             if(type === "normal"){
-//                 var normalType = data.results[i].name;
-//                 var numOfGenOneMoves = 23;
-//                 console.log(normalType);
-                
-//                return fetchMoves(normalType, numOfGenOneMoves, someArray);
-
-//             }
-
-//             else if(type === "fighting"){
-//                 var fightingType = data.results[i].name;
-//                 var numOfGenOneMoves = 7;
-//                 // console.log(fightingType);
-//                 fetchMoves(fightingType, numOfGenOneMoves);
-//             }
-
-
-//             else if(type === "flying"){
-//                 var flyingType = data.results[i].name;
-//                 var numOfGenOneMoves = 7;
-//                 // console.log(flyingType);
-//                 fetchMoves(flyingType, numOfGenOneMoves);
-//             }
-
-//             else if(type === "poison"){
-//                 var poisonType = data.results[i].name;
-//                 var numOfGenOneMoves = 7;
-//                 // console.log(poisonType);
-//                 fetchMoves(poisonType, numOfGenOneMoves);
-//             }
-
-//             else if(type === "ground"){
-//                 var groundType = data.results[i].name;
-//                 var numOfGenOneMoves = 6;
-//                 // console.log(groundType);
-//                 fetchMoves(groundType, numOfGenOneMoves);
-//             }
-
-//             else if(type === "rock"){
-//                 var rockType = data.results[i].name;
-//                 var numOfGenOneMoves = 4;
-//                 // console.log(rockType);
-//                 fetchMoves(rockType, numOfGenOneMoves);
-//             }
-
-//             else if(type === "bug"){
-//                 var bugType = data.results[i].name;
-//                 var numOfGenOneMoves = 7;
-//                 // console.log(bugType);
-//                 fetchMoves(bugType, numOfGenOneMoves);
-//             }
-
-//             else if(type === "ghost"){
-//                 var ghostType = data.results[i].name;
-//                 var numOfGenOneMoves = 4;
-//                 // console.log(ghostType);
-//                 fetchMoves(ghostType, numOfGenOneMoves);
-//             }
-
-//             else if(type === "fire"){
-//                 var fireType = data.results[i].name;
-//                 var numOfGenOneMoves = 5;
-//                 // console.log(fireType);
-//                 fetchMoves(fireType, numOfGenOneMoves);
-//             }
-
-//             else if(type === "water"){
-//                 var waterType = data.results[i].name;
-//                 var numOfGenOneMoves = 9;
-//                 // console.log(waterType);
-//                 fetchMoves(waterType, numOfGenOneMoves);
-//             }
-
-//             else if(type === "grass"){
-//                 var grassType = data.results[i].name;
-//                 var numOfGenOneMoves = 10;
-//                 // console.log(grassType);
-//                 fetchMoves(grassType, numOfGenOneMoves);
-//             }
-
-//             else if(type === "electric"){
-//                 var electricType = data.results[i].name;
-//                 var numOfGenOneMoves = 5;
-//                 // console.log(electricType);
-//                 fetchMoves(electricType, numOfGenOneMoves);
-//             }
-
-//             else if(type === "psychic"){
-//                 var psychicType = data.results[i].name;
-//                 var numOfGenOneMoves = 4;
-//                 // console.log(psychicType);
-//                 fetchMoves(psychicType, numOfGenOneMoves);
-//             }
-
-//             else if(type === "ice"){
-//                 var iceType = data.results[i].name;
-//                 var numOfGenOneMoves = 5;
-//                 // console.log(iceType);
-//                 fetchMoves(iceType, numOfGenOneMoves);
-//             }
-
-//             else if(type === "dragon"){
-//                 var dragonType = data.results[i].name;
-//                 var numOfGenOneMoves = 4;
-//                 // console.log(dragonType);
-//                 fetchMoves(dragonType, numOfGenOneMoves);
-//             }
-
-//         }      
-//     })
-// }
-
-
-
-// async function fetchMoves(type, numMoves, someArray){
-    
-//     var genOneTypesURL = "https://pokeapi.co/api/v2/type/" + type;
-//     await fetch(genOneTypesURL)
-//     .then(function (response) {
-//         return response.json();
-//     })
-//     .then(function (data) { 
-//         //console.log(data);
-//         //Pushes all the moves of given type into an array
-//         for(var i = 0; i < numMoves; i++ ){
-//             var pokemonMove = data.moves[i].name;
-
-//             if(type === "normal"){
-//                 return someArray.push(pokemonMove);
-//             }
-//             else if(type === "fighting"){
-//                 fightingMoves.push(pokemonMove);
-//             }
-//             else if(type === "flying"){
-//                 flyingMoves.push(pokemonMove);
-//             }
-//             else if(type === "poison"){
-//                 poisonMoves.push(pokemonMove);
-//             }
-//             else if(type === "ground"){
-//                 groundMoves.push(pokemonMove);
-//             }
-//             else if(type === "rock"){
-//                 rockMoves.push(pokemonMove);
-//             }
-//             else if(type === "bug"){
-//                 bugMoves.push(pokemonMove);
-//             }
-//             else if(type === "ghost"){
-//                 ghostMoves.push(pokemonMove);
-//             }
-//             else if(type === "fire"){
-//                 fireMoves.push(pokemonMove);
-//             }
-//             else if(type === "water"){
-//                 waterMoves.push(pokemonMove);
-//             }
-//             else if(type === "grass"){
-//                 grassMoves.push(pokemonMove);
-//             }
-//             else if(type === "electric"){
-//                 electricMoves.push(pokemonMove);
-//             }
-//             else if(type === "psychic"){
-//                 psychicMoves.push(pokemonMove);
-//             }
-//             else if(type === "ice"){
-//                 iceMoves.push(pokemonMove);
-//             }
-//             else if(type === "dragon"){
-//                 dragonMoves.push(pokemonMove);
-//             }
-//             else{
-//                 allMoves.push(pokemonMove);
-//             }
-//         }
-        // //Loops through all the moves in the array and randomizes 4 moves
-        // randomizeMoves(allMoves);
-        // for(var j = 0; j < 4; j++){
-        //     console.log(allMoves[j]);
-        // }
-//     })
-// }
-// console.log(normalMoves);
-// console.log(fightingMoves);
-// console.log(flyingMoves);
-// console.log(poisonMoves);
-// console.log(groundMoves);
-// console.log(rockMoves);
-// console.log(bugMoves);
-// console.log(ghostMoves);
-// console.log(fireMoves);
-// console.log(waterMoves);
-// console.log(grassMoves);
-// console.log(electricMoves);
-// console.log(psychicMoves);
-// console.log(iceMoves);
-// console.log(dragonMoves);
-// console.log(allMoves);
-
-// console.log(normalMoves[0]);
-
-
-// //Uses Fisher-Yates Shuffle to randomize moves
-//  function randomizeMoves(allMoves){
-//     var m = allMoves.length, t, i;
-
-//     while (m) {
-//       i = Math.floor(Math.random() * m--);
-//       t = allMoves[m];
-//       allMoves[m] = allMoves[i];
-//       allMoves[i] = t;
-//     }
-//     return allMoves;
-//  }
-
-//  fetchTypes();   
-
-
-    
-//goals: get moves to push into allMoves array
-//splice each categories into seaparate arrays
-//link the pokemon type to the move type arrays
-//once pokemon are linked with their types and moves then I can determine how much damage is done to their hp
-//work on HP bar animation
+    fetch(powerURL)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) { 
+        console.log(data);
+        var power = data.power;
+        if(power === null){
+            var hitOrMiss = Math.floor(Math.random() * 2);  //some moves return null because they don't do damage...in this game they have a 50/50 chance of missing or damaging 50
+            console.log(hitOrMiss);
+            if(hitOrMiss === 0){
+                console.log("Pokemon Missed!");
+            }
+            else{
+                power = 50;
+            }
+        }
+        console.log(power);
+    })
+}
 
 
 
 
+
+
+
+
+
+
+
+fetchMoveData();
+
+//Not sure If i need lines 221 to 279 but will keep for now.
 
 // //Gets pokemon name and it's type. Could use later with the move type arrays
 // function userPokemonType(){
@@ -361,7 +290,6 @@ retrieveType(1).then((value) => {
 // //     });
 // // }
     
-
 // function fetchMove(name, type){
 
 //     var pokeMoveEx = 'razor-leaf';
@@ -383,8 +311,6 @@ retrieveType(1).then((value) => {
 
 //     var pokemonHitPoints = 200;
 // }
-
-
 
 // userPokemonType();
 // enemyPokemonType();
