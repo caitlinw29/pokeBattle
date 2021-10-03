@@ -336,8 +336,7 @@ function makeTeams() {
 
 //Oscar
 function battleBtnDisplayTeams(){
-//oscar continued
- //Oscar code for pulling in pokemon img's into image tags on battle page.
+// OU code for pulling in pokemon img's into image tags on battle page.
         //creating variables to manipulate the img tags for player and cpu teams
         var userTeamImg1 = document.getElementById("user-team-img-1");
         var userTeamImg2 = document.getElementById("user-team-img-2");
