@@ -223,7 +223,7 @@ function movePower(){
 
     fetch(powerURL)
     .then(function (response) {
-        return response.json();
+      return response.json();
     })
     .then(function (data) { 
         console.log(data);
@@ -260,7 +260,7 @@ fetchMoveData();
 // function userPokemonType(){
 //     var userPokemon = "pikachu";
 //     var userPokeURL = "https://pokeapi.co/api/v2/pokemon/" + userPokemon;
-    
+
 //     fetch(userPokeURL)
 //     .then(function (response) {
 //         return response.json();
@@ -277,7 +277,7 @@ fetchMoveData();
 
 // //     var enemyPokemon = "squirtle";
 // //     var enemyPokeURL = "https://pokeapi.co/api/v2/pokemon/" + enemyPokemon;
-    
+
 // //     fetch(enemyPokeURL)
 // //     .then(function (response) {
 // //         return response.json();
@@ -327,97 +327,167 @@ createTeams.addEventListener("click", makeTeams);
 
 //Use min and max to generate a random number within a range
 function getRandomNum(min, max) {
-    return Math.floor(Math.random() * (max - min + 1));
+  return Math.floor(Math.random() * (max - min + 1));
+}
+
+// oscars array
+var playerSpritesArray = [];
+var cpuSpritesArray = [];
+var container2 = document.getElementById('container2')
+
+function showBattle(){
+    
+    container2.classList.remove('hidden');
+    container1.classList.add('hidden'); 
 }
 
 //Make two randomized teams
 function makeTeams() {
-    
-    //store the user input (1-6)
-    var input = document.getElementById("numPokemon").value;
-    var pokeArray = [];
-    var opponentArray = [];
-    //While loops make sure that the same pokemon isn't pulled twice
-    while(pokeArray.length <= input - 1){
-        //Only using first generation pokemon, which is where 151 comes from
-        var randomPokemon = getRandomNum(0, 151);
-        //if the random number isn't already in the array, push it in
-        if(pokeArray.indexOf(randomPokemon) === -1) {
-            pokeArray.push(randomPokemon);
-        };
+  //store the user input (1-6)
+  var input = document.getElementById("numPokemon").value;
+  var pokeArray = [];
+  var opponentArray = [];
+  //While loops make sure that the same pokemon isn't pulled twice
+  while (pokeArray.length <= input - 1) {
+    //Only using first generation pokemon, which is where 151 comes from
+    var randomPokemon = getRandomNum(0, 151);
+    //if the random number isn't already in the array, push it in
+    if (pokeArray.indexOf(randomPokemon) === -1) {
+      pokeArray.push(randomPokemon);
     }
-    while(opponentArray.length <= input - 1){
-        var randomPokemon = getRandomNum(0, 151);
-        //check both arrays this time so there aren't a repeat pokemon across teams either
-        if(opponentArray.indexOf(randomPokemon) === -1 && pokeArray.indexOf(randomPokemon) === -1) {
-            opponentArray.push(randomPokemon);
-        };
+  }
+  while (opponentArray.length <= input - 1) {
+    var randomPokemon = getRandomNum(0, 151);
+    //check both arrays this time so there aren't a repeat pokemon across teams either
+    if (
+      opponentArray.indexOf(randomPokemon) === -1 &&
+      pokeArray.indexOf(randomPokemon) === -1
+    ) {
+      opponentArray.push(randomPokemon);
     }
+  }
 
-    //two for loops, one for user pokemon and one for computer pokemon
-    //for each number up to the user selected input number...
-    for(i=0; i<input; i++) {
-        //pull the current index value of the array...
-        var pokeArrayInput = pokeArray[i];
-        //plug that value into the url as the number for the random pokemon to pull the data for that pokemon...
-        var pokeUrl = "https://pokeapi.co/api/v2/pokemon/" + pokeArrayInput;
-        fetch(pokeUrl)
+  //two for loops, one for user pokemon and one for computer pokemon
+  //for each number up to the user selected input number...
+  for (i = 0; i < input; i++) {
+    //pull the current index value of the array...
+    var pokeArrayInput = pokeArray[i];
+    //plug that value into the url as the number for the random pokemon to pull the data for that pokemon...
+    var pokeUrl = "https://pokeapi.co/api/v2/pokemon/" + pokeArrayInput;
+    fetch(pokeUrl)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        //...create a div to store an img and p tag.
+        var container = document.createElement("div");
+        container.className = "inline-block";
+        //set the src to be the sprite image from the API call
+        var pokePic = document.createElement("img");
+        pokePic.setAttribute("src", data.sprites.front_default);
+        //Set p textcontent to be the name of the pokemon, with the first letter capitalized - 0 is the first letter capitalized and substring will hold the rest of the letters
+        var pokeName = document.createElement("p");
+        pokeName.textContent =
+          data.name[0].toUpperCase() + data.name.substring(1);
+        //Make the section visible
+        var yourTeam = document.getElementById("yourTeam");
+        yourTeam.classList.remove("hidden");
+        //Add animations to the image and text
+        pokePic.className = "fade-in";
+        pokeName.className = "fade-in";
+
+        //Add the div to the section, and the img and p to the div
+        yourTeam.appendChild(container);
+        container.appendChild(pokePic);
+        container.appendChild(pokeName);
+
+       
+
+       
+
+        playerSpritesArray.push(data.sprites.front_default);
+        
+
+      });
+  }
+
+ 
+
+  setTimeout(function () {
+    //  call a 1.5s setTimeout before the computer's team show up
+
+    for (i = 0; i < input; i++) {
+      //Set up a randomized team for the computer
+      var opponentArrayInput = opponentArray[i];
+      var opponentUrl =
+        "https://pokeapi.co/api/v2/pokemon/" + opponentArrayInput;
+      fetch(opponentUrl)
         .then(function (response) {
-            return response.json();
+          return response.json();
         })
-        .then(function (data) { 
-            //...create a div to store an img and p tag.
-            var container = document.createElement("div");
-            container.className = "inline-block";
-            //set the src to be the sprite image from the API call
-            var pokePic = document.createElement("img");
-            pokePic.setAttribute("src", data.sprites.front_default);
-            //Set p textcontent to be the name of the pokemon, with the first letter capitalized - 0 is the first letter capitalized and substring will hold the rest of the letters
-            var pokeName = document.createElement ("p");
-            pokeName.textContent = data.name[0].toUpperCase() + data.name.substring(1);
-            //Make the section visible
-            var yourTeam = document.getElementById("yourTeam");
-            yourTeam.classList.remove("hidden");
-            //Add animations to the image and text
-            pokePic.className = "fade-in";
-            pokeName.className = "fade-in";
-            
-            //Add the div to the section, and the img and p to the div
-            yourTeam.appendChild(container);
-            container.appendChild(pokePic);
-            container.appendChild(pokeName);
-        })
+        .then(function (data) {
+          //create elements and set classes, text-content, and attributes
+          var container = document.createElement("div");
+          container.className = "inline-block";
+          var pokePic = document.createElement("img");
+          pokePic.setAttribute("src", data.sprites.front_default);
+          pokePic.className = "fade-in";
+          var pokeName = document.createElement("p");
+          pokeName.textContent =
+            data.name[0].toUpperCase() + data.name.substring(1);
+          pokeName.className = "fade-in";
+          var computerTeam = document.getElementById("computerTeam");
+          computerTeam.classList.remove("hidden");
+
+          //Append the divs to the computer section and the img and p tags to the div
+          computerTeam.appendChild(container);
+          container.appendChild(pokePic);
+          container.appendChild(pokeName);
+
+          cpuSpritesArray.push(data.sprites.front_default);
+        });
     }
-    setTimeout(function() {   //  call a 1.5s setTimeout before the computer's team show up                 
-      
-        for(i=0; i<input; i++) {
-            //Set up a randomized team for the computer
-            var opponentArrayInput = opponentArray[i];
-            var opponentUrl = "https://pokeapi.co/api/v2/pokemon/" + opponentArrayInput;
-            fetch(opponentUrl)
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) { 
-                //create elements and set classes, text-content, and attributes
-                var container = document.createElement("div");
-                container.className = "inline-block";
-                var pokePic = document.createElement("img");
-                pokePic.setAttribute("src", data.sprites.front_default);
-                pokePic.className = "fade-in";
-                var pokeName = document.createElement ("p");
-                pokeName.textContent = data.name[0].toUpperCase() + data.name.substring(1);
-                pokeName.className = "fade-in";
-                var computerTeam = document.getElementById("computerTeam");
-                computerTeam.classList.remove("hidden");
-                
-                //Append the divs to the computer section and the img and p tags to the div
-                computerTeam.appendChild(container);
-                container.appendChild(pokePic);
-                container.appendChild(pokeName);
-            })
-        }
-    }, 1500) //end of timeout
+  }, 1500); //end of timeout
+
+  //Oscar
+function battleBtnDisplayTeams(){
+// OU code for pulling in pokemon img's into image tags on battle page.
+        //creating variables to manipulate the img tags for player and cpu teams
+        var userTeamImg1 = document.getElementById("user-team-img-1");
+        var userTeamImg2 = document.getElementById("user-team-img-2");
+        var userTeamImg3 = document.getElementById("user-team-img-3");
+        var userTeamImg4 = document.getElementById("user-team-img-4");
+        var userTeamImg5 = document.getElementById("user-team-img-5");
+        var userTeamImg6 = document.getElementById("user-team-img-6");
+
+        var cpuTeamImg1 = document.getElementById("cpu-team-img-1");
+        var cpuTeamImg2 = document.getElementById("cpu-team-img-2");
+        var cpuTeamImg3 = document.getElementById("cpu-team-img-3");
+        var cpuTeamImg4 = document.getElementById("cpu-team-img-4");
+        var cpuTeamImg5 = document.getElementById("cpu-team-img-5");
+        var cpuTeamImg6 = document.getElementById("cpu-team-img-6");
+
+
+  userTeamImg1.setAttribute('src', playerSpritesArray[0]);
+  userTeamImg2.setAttribute('src', playerSpritesArray[1]);
+  userTeamImg3.setAttribute('src', playerSpritesArray[2]);
+  userTeamImg4.setAttribute('src', playerSpritesArray[3]);
+  userTeamImg5.setAttribute('src', playerSpritesArray[4]);
+  userTeamImg6.setAttribute('src', playerSpritesArray[5]);
+
+  cpuTeamImg1.setAttribute('src', cpuSpritesArray[0]);
+  cpuTeamImg2.setAttribute('src', cpuSpritesArray[1]);
+  cpuTeamImg3.setAttribute('src', cpuSpritesArray[2]);
+  cpuTeamImg4.setAttribute('src', cpuSpritesArray[3]);
+  cpuTeamImg5.setAttribute('src', cpuSpritesArray[4]);
+  cpuTeamImg6.setAttribute('src', cpuSpritesArray[5]);
+
+
+
+
+}
+ 
+
 
     //Hide the "choose team size" input and "make teams" button
     var chooseTeams = document.getElementById("chooseTeams");

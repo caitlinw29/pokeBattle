@@ -94,7 +94,14 @@ body{
     100% {opacity:1;}
 }
 
-/* Overlay color on the fainted pokemon */
+#container2{
+  background-image: url('../images/grassfeild.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed  ;
+  background-size: cover;
+}
+
+  /* Overlay color on the fainted pokemon */
 
 .userHpOverlay {
     position: fixed;
@@ -121,5 +128,6 @@ body{
     background-color: black;
     opacity: .5;
   }
+
 
 
