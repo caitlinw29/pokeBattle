@@ -253,6 +253,7 @@ function movePower(){
             }
             else{
                 power = 50;
+                $("#gameText").text("Direct Hit!");
             }
         }
         console.log(power);
@@ -502,16 +503,6 @@ var saveCpuPokemon = function (pokeName, pokePic, pokeType) {
 };
 
 
-
-// Fainting/Win/Lose Conditions - Zac 
-
-
-// Functions for HP, user & computer.
-
-
-
-
-
 // User HP
 
 let userHealth = document.getElementById('userHealth');
@@ -551,11 +542,11 @@ function loseComputerHp(power){
 
 
 function userLost() { 
-    alert("You Lose!");
+    $("#gameText").text("You Lost!");
 }
 
 function userWon(){
-    alert("You win!");
+    $("#gameText").text("You Win!");
 }
 
 
@@ -591,15 +582,25 @@ function moveBegins() {
         // JSON.parse(localStorage.getItem("userPokemon"));
         // var yourBigPoke = document.getElementById("your-poke-image");
         // yourBigPoke.setAttribute("src", userPokemon[0].picture);
-    } 
-    if (hasFaintedComputer = true) {
-        for(var i = 0; i<computerImages.length; i++) {
-            computerImages[i].classList.add("overlay");
-        }
     }
 
     completeCpuMove();
 }
+
+
+function completeUserMove(){
+    // loseComputerHp(power);
+    
+    var yourBigPoke = document.getElementById("your-poke-image");
+    yourBigPoke.classList.add("object");
+    yourBigPoke.classList.add("move-right");
+    setTimeout(function() {   
+        yourBigPoke.classList.remove("move-right");
+    }, 500)
+
+}
+
+
 
 var cpuMove;
 //save a bank of 4 moves from the CPU's type. Randomly select one of those moves, and store it to be used in the completeCpuMove function
@@ -630,7 +631,14 @@ function storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves) 
 }
 
 function completeCpuMove() {
-
+    setTimeout(function() {
+    }, 1000)
+    var cpuBigPoke = document.getElementById("cpu-poke-image");
+    cpuBigPoke.classList.add("object");
+    cpuBigPoke.classList.add("move-left");
+    setTimeout(function() {
+        cpuBigPoke.classList.remove("move-left");
+    }, 500)
 }
  
 
@@ -663,6 +671,3 @@ var computerImages = document.getElementsByClassName('overlay');
 // function notFaintedYet(){
 //     notFainted.style.display = 'none';
 // }
-
-
-

@@ -127,5 +127,31 @@ body{
     position: relative;
 }
 
+.object {
+    transition: all .5s linear;
+    -webkit-transition: all .5s linear; /** Chrome & Safari **/
+    -moz-transition: all .5s linear; /** Firefox **/
+    -o-transition: all .5s linear; /** Opera **/
+}
 
+
+#axis .move-right{
+
+    transform: translate(50px,0);
+    -webkit-transform: translate(50px,0); /** Chrome & Safari **/
+    -o-transform: translate(50px,0); /** Opera **/
+    -moz-transform: translate(50px,0); /** Firefox **/
+}
+
+#axis .move-left{
+    transform: translate(-30px,0);
+    -webkit-transform: translate(-30px,0); /** Chrome & Safari **/
+    -o-transform: translate(-30px,0); /** Opera **/
+    -moz-transform: translate(-30px,0); /** Firefox **/
+}
+
+#battleText {
+    text-align: center;
+    font-size: 200%;
+}
 
