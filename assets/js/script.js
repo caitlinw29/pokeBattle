@@ -248,7 +248,8 @@ function movePower(){
             var hitOrMiss = Math.floor(Math.random() * 2);  //some moves return null because they don't do damage...in this game they have a 50/50 chance of missing or damaging 50
             console.log(hitOrMiss);
             if(hitOrMiss === 0){
-                console.log("Pokemon Missed!");
+                var pokemonName = JSON.parse(localStorage.getItem('userPokemon'));
+                $("#gameText").text(pokemonName[0].name +  " Missed!");
             }
             else{
                 power = 50;
@@ -523,7 +524,9 @@ function loseUserHp (power){
         return;
     } 
     if (userHealth.value === 0){
-        hasFaintedUser();
+        var pokemonName = JSON.parse(localStorage.getItem('userPokemon'));
+        $("#gameText").text(pokemonName[0].name +  " Fainted!");
+        userLost();
     }
 }
 
@@ -538,16 +541,21 @@ function loseComputerHp(power){
     computerHealth.value -= power;
     console.log("HP left: " + computerHealth.value);
     if(computerHealth.value === 0){
-        $("#gameText").text("Pokemon Fainted");
+        var pokemonName = JSON.parse(localStorage.getItem('cpuPokemon'));
+        $("#gameText").text(pokemonName[0].name +  " Fainted!");
+        userWon();
     }
 }
 
 
 
 
-function hasFainted() { 
-    // The location of individual Pokémon within the array can be identified with array
-    // index, and removed when their HP goes to zero per the functions above.
+function userLost() { 
+    alert("You Lose!");
+}
+
+function userWon(){
+    alert("You win!");
 }
 
 
@@ -563,7 +571,7 @@ for(var i=0; i<battleBtns.length; i++){
 
 
 function moveBegins() {
-    var showTeam = document.getElementById("showTeam");
+    // var showTeam = document.getElementById("showTeam");
     // showTeam.classList.remove()
     var flipCoin = Math.floor(Math.random() * 2);
     if(flipCoin === 0){
