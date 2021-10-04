@@ -105,7 +105,7 @@ body{
   background-size: cover;
 }
 
-  /* Overlay color on the fainted pokemon */
+/* Overlay color on the fainted pokemon
 
 /* .userHpOverlay {
     position: relative;
@@ -152,4 +152,4 @@ body{
 
 #playAgainButton:hover {
     background-color: rgb(67, 107, 182);
-}
+} */
