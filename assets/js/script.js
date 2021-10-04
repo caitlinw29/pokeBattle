@@ -512,8 +512,8 @@ function loseUserHp (power){
     userHealth.value -= power;
     console.log(userHealth.value);
     while (userHealth.value > 0) {
-        var cpupokemonName = JSON.parse(localStorage.getItem('cpuPokemon'));
-        $("#gameText").text(cpupokemonName[0].name +  " did " + power + " damage!");
+;        var cpuPokemonName = JSON.parse(localStorage.getItem('cpuPokemon'));
+        $("#gameText").text(cpuPokemonName[0].name +  " did " + power + " damage!");
         return;
     } 
     if (userHealth.value === 0){
@@ -528,6 +528,7 @@ function loseUserHp (power){
 
 let computerHealth =  document.getElementById('computerHealth');
 console.log("Computer Health: " + computerHealth.value);
+
 function loseComputerHp(power){
     console.log("Current HP: " + computerHealth.value);
     console.log("Damage done: "  + power);
@@ -545,6 +546,7 @@ function loseComputerHp(power){
 
 function userLost() { 
     $("#gameText").text("You Lost!");
+
 }
 
 function userWon(){
@@ -564,6 +566,7 @@ function cpuTurn() {
     $("#button2").hide();
     $("#button3").hide();
     $("#button4").hide();
+
     setTimeout(function() {   
         var power = Math.floor(Math.random() * 110)
         loseUserHp(power);
