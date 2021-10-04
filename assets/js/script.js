@@ -233,7 +233,8 @@ function displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves){
 //When user clicks on a move button it brings up the power of the move
 function movePower(){
     var moveName = this.event.path[0].childNodes[0].nodeValue;   //goes through button path to find name of the move
-    console.log("Pokemon used " + moveName);
+    var pokemonName = JSON.parse(localStorage.getItem('userPokemon'));
+    $("#gameText").text(pokemonName[0].name +  " used " + moveName);
     var powerURL = "https://pokeapi.co/api/v2/move/" + moveName;
 
     fetch(powerURL)
@@ -259,89 +260,8 @@ function movePower(){
 }
 
 
-
-// let health = document.getElementById('health');
-// function loseHP(power){
-//     console.log("Current HP: " + health.value);
-//     console.log("Damage done: "  + power);
-//     health.value -= power;
-//     console.log("HP left: " + health.value);
-//     if(health.value === 0){
-//         console.log("Pokemon Fainted");
-//     }
-// }
-
-
-
-
-
-
-// fetchMoveData();
-
-//Not sure If i need lines 221 to 279 but will keep for now.
-
-// //Gets pokemon name and it's type. Could use later with the move type arrays
-// function userPokemonType(){
-//     var userPokemon = "pikachu";
-//     var userPokeURL = "https://pokeapi.co/api/v2/pokemon/" + userPokemon;
-
-//     fetch(userPokeURL)
-//     .then(function (response) {
-//         return response.json();
-//     })
-//     .then(function (data) {
-//         console.log(data)
-//         var userType = data.types[0].type.name
-//         console.log("User Pokemon: " +userPokemon + " type: " + userType)
-//         fetchMove(userPokemon, userType);
-//     });
-// }
-
-// // function enemyPokemonType(){
-
-// //     var enemyPokemon = "squirtle";
-// //     var enemyPokeURL = "https://pokeapi.co/api/v2/pokemon/" + enemyPokemon;
-
-// //     fetch(enemyPokeURL)
-// //     .then(function (response) {
-// //         return response.json();
-// //     })
-// //     .then(function (data) {
-// //         console.log(data)
-// //         var enemyType = data.types[0].type.name
-// //         console.log("Enemy Pokemon: " + enemyPokemon + " type: " + enemyType)
-// //         return enemyPokemon, enemyType;
-// //     });
-// // }
-    
-// function fetchMove(name, type){
-
-//     var pokeMoveEx = 'razor-leaf';
-//     var moveURL = "https://pokeapi.co/api/v2/move/" + pokeMoveEx;
-
-//     fetch(moveURL)
-//     .then(function (response) {
-//         return response.json();
-//     })
-//     .then(function (data) {
-//         console.log(data)
-//         var power = data.power
-//         lostHP(pokeMoveEx, power);
-//     });
-// }
-
-// function lostHP(pokeMoveEx, power){
-//     console.log(pokeMoveEx + ": " + power);
-
-//     var pokemonHitPoints = 200;
-// }
 var pokeArray = [];
 var opponentArray = [];
-
-
-// userPokemonType();
-// enemyPokemonType();
-//target the button for making teams, then on click run the makeTeams function
 
 
 
@@ -356,9 +276,9 @@ function getRandomNum(min, max) {
   return Math.floor(Math.random() * (max - min + 1));
 }
 
-// oscars array
-var playerSpritesArray = [];
-var cpuSpritesArray = [];
+// // oscars array
+// var playerSpritesArray = [];
+// var cpuSpritesArray = [];
 var container2 = document.getElementById('container2');
 
 var input;
@@ -428,7 +348,7 @@ function makeTeams() {
         container.appendChild(img);
         container.appendChild(p);
 
-        playerSpritesArray.push(data.sprites.front_default);
+        // playerSpritesArray.push(data.sprites.front_default);
         
       })
   }
@@ -468,7 +388,7 @@ function makeTeams() {
                 container.appendChild(img);
                 container.appendChild(p);
 
-                cpuSpritesArray.push(data.sprites.front_default);
+                // cpuSpritesArray.push(data.sprites.front_default);
 
             })
         } 
@@ -478,23 +398,19 @@ function makeTeams() {
     function battleBtnDisplayTeams(){ 
         //creating images for each pokemon on both the user team, and the cpu team
         //images appended to their containers, with the src pulled from the playerSpritesArray and cpuSpritesArray
-        for (i=0; i<playerSpritesArray.length; i++) {
-            var img = document.createElement("img");
-            img.setAttribute("src", playerSpritesArray[i]);
-            var playerTeam = document.getElementById("playerTeam");
-            playerTeam.appendChild(img);
-        }
+        // for (i=0; i<playerSpritesArray.length; i++) {
+        //     var img = document.createElement("img");
+        //     img.setAttribute("src", playerSpritesArray[i]);
+        //     var playerTeam = document.getElementById("playerTeam");
+        //     playerTeam.appendChild(img);
+        // }
 
-        document.getElementsByClassName('cpuTeamBox').appendChild('img').className = 'cpuSmallImage';
-
-
-
-        for (i=0; i<cpuSpritesArray.length; i++) {
-            var img = document.createElement("img");
-            img.setAttribute("src", cpuSpritesArray[i]);
-            var cpuTeam = document.getElementById("cpuTeam");
-            cpuTeam.appendChild(img);
-        } 
+        // for (i=0; i<cpuSpritesArray.length; i++) {
+        //     var img = document.createElement("img");
+        //     img.setAttribute("src", cpuSpritesArray[i]);
+        //     var cpuTeam = document.getElementById("cpuTeam");
+        //     cpuTeam.appendChild(img);
+        // } 
 
         // Make userPokemonName the H2 text that will display the pokemon name
         var userPokemonName = document.getElementById('user-pokemon-name');
@@ -622,7 +538,7 @@ function loseComputerHp(power){
     computerHealth.value -= power;
     console.log("HP left: " + computerHealth.value);
     if(computerHealth.value === 0){
-        console.log("Pokemon Fainted");
+        $("#gameText").text("Pokemon Fainted");
     }
 }
 
@@ -647,8 +563,6 @@ for(var i=0; i<battleBtns.length; i++){
 
 
 function moveBegins() {
-    console.log("Move Begins");
-
     var showTeam = document.getElementById("showTeam");
     // showTeam.classList.remove()
     var flipCoin = Math.floor(Math.random() * 2);
