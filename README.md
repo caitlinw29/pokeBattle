@@ -3,6 +3,12 @@
 ## The Concept, The Build, The Player Experience
 
 
+### Deployed Link 
+### https://caitlinw29.github.io/pokeBattle/
+
+
+
+
 ### The Concept
 
 #### The idea for this project is simple: a straighforward game in which the user can randomly generate a "first generation" Pokémon and pit it against the computer player, which also generates a Pokémon at random.  The game is meant to be understandable and intuitive, with an 'HP' bar instead of a numeric score that changes in a way that the player can see as he/she progresses through the game.  In other words, there are no high scores, just a simple win/lose condition that is contingent upon the player defeating, or losing to, the randomly generated enemy Pokémon.  If the player wants to play again, he/she can do so after they have played against the computer.  No branches or paths for the player to get lost in, no dead ends, just one path for the player to use.
