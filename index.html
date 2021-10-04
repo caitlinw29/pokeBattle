@@ -105,15 +105,17 @@
               </div>
               <div class="row">
               </div>
+              <div>
+              </div>
             </div>
           </div>  
           
           <!-- 2nd column in the middle of 3rd row on page  -->
           <div class="col-4">
+            <p id="gameText"></p>
           </div>
           <!-- 3rd column on the right of 3rd row on page  -->
           <div class="col">
-            <p id="gameText"></p>
             </div>
           </div>    
         </div>
@@ -137,72 +139,3 @@
 
     </body>
 </html>
-
-
-<!-- Code for a progress bar!  We can discuss the implementation this weekend, and how we all want it to work
-(We might have a random number generation if the attacks pulled from the APIs don't work) -->
-
-<!-- <div>
-  <h2 id="hpBarTitle">HP</h2>
-  <div class="hpBar">
-    <div class="hpBarValue">50%</div>
-    <div class="hpBarFillSpace"></div>
-  </div>
-</div>
-
-<style>
-  .hpBar {
-    position: relative;
-    width: 400px;
-    height: 50px;
-    border: 1px black solid;
-  }
-  .hpBarFillSpace {
-    height: 100%;
-    background: blue;
-    transition: width 1s;
-  }
-  .hpBarValue{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: white;
-  }
-</style>
-
-<script>
-  class ProgressBar{
-    constructor (element, startingValue = 0){
-      this.valueElement = element.querySelector('.hpBarValue');
-      this.fillElement = element.querySelector('.hpFillSpace');
-
-      this.setValue(startingValue); // Targeting startingValue with a new variable that we'll see in a moment.
-    }
-
-    setValue (newValue) {  // If the value of newValue ever gets above 100 or below 0, this will bring it back
-      if (newValue < 0) {  // to within those parameters.
-        newValue = 0;
-      }
-      if (newValue > 100){
-        newValue = 100;
-      }
-      this.value = newValue;
-      this.update();
-    }
-
-    update() {
-      const percentage = this.value + '%';  // This appends the percentage % sign to whatever the value becomes.
-
-      this.fillElement.style.width = percentage;  // Manipulating the width of the 'blue' space inside of the bar.
-      this.valueElement.textContent = percentage; // Manipulating the text that expresses the percentage of the bar width.
-    }
-  }
-
-   const HPB = new ProgressBar(document.querySelector('.hpBar'), 100);
-</script> -->
-
-

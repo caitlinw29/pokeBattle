@@ -233,29 +233,32 @@ function displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves){
 //When user clicks on a move button it brings up the power of the move
 function movePower(){
     var moveName = this.event.path[0].childNodes[0].nodeValue;   //goes through button path to find name of the move
-    var pokemonName = JSON.parse(localStorage.getItem('userPokemon'));
-    $("#gameText").text(pokemonName[0].name +  " used " + moveName);
     var powerURL = "https://pokeapi.co/api/v2/move/" + moveName;
-
+    
     fetch(powerURL)
     .then(function (response) {
-      return response.json();
+        return response.json();
     })
     .then(function (data) { 
         console.log(data);      //Consoles the data path which shows attack move
         var power = data.power;
+        var pokemonName = JSON.parse(localStorage.getItem('userPokemon'));
+        $("#gameText").text(pokemonName[0].name +  " used " + moveName + " and did " + power + " damage!");
         if(power === null){
             var hitOrMiss = Math.floor(Math.random() * 2);  //some moves return null because they don't do damage...in this game they have a 50/50 chance of missing or damaging 50
             console.log(hitOrMiss);
             if(hitOrMiss === 0){
-                console.log("Pokemon Missed!");
+                var pokemonName = JSON.parse(localStorage.getItem('userPokemon'));
+                $("#gameText").text(pokemonName[0].name +  " Missed!");
             }
             else{
                 power = 50;
+                $("#gameText").text("Direct Hit! " + pokemonName[0].name + " did 50 damage!");
             }
         }
         console.log(power);
         loseComputerHp(power)
+        cpuTurn();
     })
 }
 
@@ -501,16 +504,6 @@ var saveCpuPokemon = function (pokeName, pokePic, pokeType) {
 };
 
 
-
-// Fainting/Win/Lose Conditions - Zac 
-
-
-// Functions for HP, user & computer.
-
-
-
-
-
 // User HP
 
 let userHealth = document.getElementById('userHealth');
@@ -519,11 +512,14 @@ function loseUserHp (power){
     userHealth.value -= power;
     console.log(userHealth.value);
     while (userHealth.value > 0) {
-        notFaintedYet();
+        var cpupokemonName = JSON.parse(localStorage.getItem('cpuPokemon'));
+        $("#gameText").text(cpupokemonName[0].name +  " did " + power + " damage!");
         return;
     } 
     if (userHealth.value === 0){
-        hasFaintedUser();
+        var pokemonName = JSON.parse(localStorage.getItem('userPokemon'));
+        $("#gameText").text(pokemonName[0].name +  " Fainted!");
+        userLost();
     }
 }
 
@@ -538,16 +534,21 @@ function loseComputerHp(power){
     computerHealth.value -= power;
     console.log("HP left: " + computerHealth.value);
     if(computerHealth.value === 0){
-        $("#gameText").text("Pokemon Fainted");
+        var pokemonName = JSON.parse(localStorage.getItem('cpuPokemon'));
+        $("#gameText").text(pokemonName[0].name +  " Fainted!");
+        userWon();
     }
 }
 
 
 
 
-function hasFainted() { 
-    // The location of individual Pokémon within the array can be identified with array
-    // index, and removed when their HP goes to zero per the functions above.
+function userLost() { 
+    $("#gameText").text("You Lost!");
+}
+
+function userWon(){
+    $("#gameText").text("You Win!");
 }
 
 
@@ -556,42 +557,25 @@ function showBattle(){
     container1.classList.add("hidden");
 }
 
-var battleBtns = document.getElementsByClassName("battle-move");
-for(var i=0; i<battleBtns.length; i++){
-    battleBtns[i].addEventListener("click", moveBegins);
+
+
+function cpuTurn() {
+    $("#button1").hide();
+    $("#button2").hide();
+    $("#button3").hide();
+    $("#button4").hide();
+    setTimeout(function() {   
+        var power = Math.floor(Math.random() * 110)
+        loseUserHp(power);
+        $("#button1").show();
+        $("#button2").show();
+        $("#button3").show();
+        $("#button4").show();
+    }, 2500)
+
 }
 
 
-function moveBegins() {
-    var showTeam = document.getElementById("showTeam");
-    // showTeam.classList.remove()
-    var flipCoin = Math.floor(Math.random() * 2);
-    if(flipCoin === 0){
-        //input functionality of pokemon making a move and hp bar lowering
-        completeCpuMove();
-    }
-    else{
-        completeCpuMove();
-        //input functionality of pokemon making a move and hp bar lowering
-    }
-    //!check with Zac to see what fainting is called, plug in as "movesBegin"
-    if (moveBegins = true) {
-        for(var i = 0; i<userImages.length; i++) {
-            userImages[i].classList.add("overlay");
-        }
-        
-        // JSON.parse(localStorage.getItem("userPokemon"));
-        // var yourBigPoke = document.getElementById("your-poke-image");
-        // yourBigPoke.setAttribute("src", userPokemon[0].picture);
-    } 
-    if (hasFaintedComputer = true) {
-        for(var i = 0; i<computerImages.length; i++) {
-            computerImages[i].classList.add("overlay");
-        }
-    }
-
-    completeCpuMove();
-}
 
 var cpuMove;
 //save a bank of 4 moves from the CPU's type. Randomly select one of those moves, and store it to be used in the completeCpuMove function
@@ -622,7 +606,14 @@ function storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves) 
 }
 
 function completeCpuMove() {
-
+    setTimeout(function() {
+    }, 1000)
+    var cpuBigPoke = document.getElementById("cpu-poke-image");
+    cpuBigPoke.classList.add("object");
+    cpuBigPoke.classList.add("move-left");
+    setTimeout(function() {
+        cpuBigPoke.classList.remove("move-left");
+    }, 500)
 }
  
 
@@ -656,6 +647,3 @@ function completeCpuMove() {
 // function notFaintedYet(){
 //     notFainted.style.display = 'none';
 // }
-
-
-
