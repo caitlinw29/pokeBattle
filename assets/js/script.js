@@ -233,17 +233,17 @@ function displayMoves(value, randomizedArray, finalFourMoves, numOfGenOneMoves){
 //When user clicks on a move button it brings up the power of the move
 function movePower(){
     var moveName = this.event.path[0].childNodes[0].nodeValue;   //goes through button path to find name of the move
-    var pokemonName = JSON.parse(localStorage.getItem('userPokemon'));
-    $("#gameText").text(pokemonName[0].name +  " used " + moveName);
     var powerURL = "https://pokeapi.co/api/v2/move/" + moveName;
-
+    
     fetch(powerURL)
     .then(function (response) {
-      return response.json();
+        return response.json();
     })
     .then(function (data) { 
         console.log(data);      //Consoles the data path which shows attack move
         var power = data.power;
+        var pokemonName = JSON.parse(localStorage.getItem('userPokemon'));
+        $("#gameText").text(pokemonName[0].name +  " used " + moveName + " and did " + power + " damage!");
         if(power === null){
             var hitOrMiss = Math.floor(Math.random() * 2);  //some moves return null because they don't do damage...in this game they have a 50/50 chance of missing or damaging 50
             console.log(hitOrMiss);
@@ -253,11 +253,12 @@ function movePower(){
             }
             else{
                 power = 50;
-                $("#gameText").text("Direct Hit!");
+                $("#gameText").text("Direct Hit! " + pokemonName[0].name + " did 50 damage!");
             }
         }
         console.log(power);
         loseComputerHp(power)
+        cpuTurn();
     })
 }
 
@@ -511,7 +512,8 @@ function loseUserHp (power){
     userHealth.value -= power;
     console.log(userHealth.value);
     while (userHealth.value > 0) {
-        notFaintedYet();
+        var cpupokemonName = JSON.parse(localStorage.getItem('cpuPokemon'));
+        $("#gameText").text(cpupokemonName[0].name +  " did " + power + " damage!");
         return;
     } 
     if (userHealth.value === 0){
@@ -555,48 +557,21 @@ function showBattle(){
     container1.classList.add("hidden");
 }
 
-var battleBtns = document.getElementsByClassName("battle-move");
-for(var i=0; i<battleBtns.length; i++){
-    battleBtns[i].addEventListener("click", moveBegins);
-}
 
 
-function moveBegins() {
-    // var showTeam = document.getElementById("showTeam");
-    // showTeam.classList.remove()
-    var flipCoin = Math.floor(Math.random() * 2);
-    if(flipCoin === 0){
-        //input functionality of pokemon making a move and hp bar lowering
-        completeCpuMove();
-    }
-    else{
-        completeCpuMove();
-        //input functionality of pokemon making a move and hp bar lowering
-    }
-    //!check with Zac to see what fainting is called, plug in as "movesBegin"
-    if (moveBegins = true) {
-        for(var i = 0; i<userImages.length; i++) {
-            userImages[i].classList.add("overlay");
-        }
-        
-        // JSON.parse(localStorage.getItem("userPokemon"));
-        // var yourBigPoke = document.getElementById("your-poke-image");
-        // yourBigPoke.setAttribute("src", userPokemon[0].picture);
-    }
-
-    completeCpuMove();
-}
-
-
-function completeUserMove(){
-    // loseComputerHp(power);
-    
-    var yourBigPoke = document.getElementById("your-poke-image");
-    yourBigPoke.classList.add("object");
-    yourBigPoke.classList.add("move-right");
+function cpuTurn() {
+    $("#button1").hide();
+    $("#button2").hide();
+    $("#button3").hide();
+    $("#button4").hide();
     setTimeout(function() {   
-        yourBigPoke.classList.remove("move-right");
-    }, 500)
+        var power = Math.floor(Math.random() * 110)
+        loseUserHp(power);
+        $("#button1").show();
+        $("#button2").show();
+        $("#button3").show();
+        $("#button4").show();
+    }, 2500)
 
 }
 

@@ -150,8 +150,3 @@ body{
     -moz-transform: translate(-30px,0); /** Firefox **/
 }
 
-#battleText {
-    text-align: center;
-    font-size: 200%;
-}
-
