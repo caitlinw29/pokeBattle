@@ -64,10 +64,7 @@
                 <img src="" class="img-fluid.maxwidth height-auto " alt="Responsive image" id="your-poke-image">
               </div>
               <div class="row">
-                <div class="progress">
-                  <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                  </div>
-                </div>
+                <progress style="width: 100%" value="500" max="500" id="userHealth">
               </div>
             </div>
             <!--2nd column in the 2nd row of the page  -->
@@ -83,11 +80,7 @@
                 <img src="" class="img-fluid" alt="Responsive image" id="cpu-poke-image">
               </div>
               <div class="row">
-                <div class="progress">
-                    <progress style="width: 100%" value="500" max="500" id="computerHealth">
-                    </div>
-                </div>
-              </div>
+                  <progress style="width: 100%" value="500" max="500" id="computerHealth">
             </div>
           </div>
           <!-- 3rd row with 3 columns left column will have 4 buttons for Pokemon moves and a switch pokemon button -->
@@ -120,8 +113,8 @@
             
             </div>
             <!-- 3rd column on the right of 3rd row on page  -->
-            <div class="col-4">
-            
+            <div class="col">
+              <p id="gameText"></p>
             </div>
           </div>    
         </div>
