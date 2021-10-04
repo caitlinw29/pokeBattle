@@ -117,9 +117,24 @@
             </div>
           </div>    
         </div>
+
+        <!-- Win/Lose Screen, Restart Button -->
+        <div class="hidden" id="winLoseScreen">
+          <!-- "You Won!" text -->
+          <a href="https://fontmeme.com/pokemon-font/">
+          <img class="hidden" src="https://fontmeme.com/permalink/211004/909a4f69d227f7ef734dc1c190fcf898.png" alt="pokemon-font" border="0"></a>
+          <!-- "You Lost!" text -->
+          <a href="https://fontmeme.com/pokemon-font/">
+          <img class="hidden" src="https://fontmeme.com/permalink/211004/d727b0a898168c31896bbd988ab32a74.png" alt="pokemon-font" border="0"></a>
+          <br>
+          <br>
+          <input id="playAgainButton" type="button" value="Play Again?" onClick="location.href=location.href">
+          <br>
+        </div>
       </main>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
       <script src="./assets/js/script.js" async defer></script>
+
     </body>
 </html>
 
@@ -189,3 +204,5 @@
 
    const HPB = new ProgressBar(document.querySelector('.hpBar'), 100);
 </script> -->
+
+

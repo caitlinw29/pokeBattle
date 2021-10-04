@@ -628,6 +628,7 @@ function completeCpuMove() {
 
 
 
+
 //  Functions that loop through the images with class names stored in variables
 // userImages and computerImages.  They are called by the functions above that check to
 // see if a pokemon's hp has reached zero.  When it does, these functions are called and 
@@ -635,15 +636,15 @@ function completeCpuMove() {
 
 
 
-var userImages = document.getElementsByClassName('overlay');
+// var userImages = document.getElementsByClassName('overlay');
 
-// function hasFaintedUser(){
-//     for(var i = 0; i<userImages.length; i++){
-//         userImages[i].style.display = 'block';
-//     }
-// }
+// // function hasFaintedUser(){
+// //     for(var i = 0; i<userImages.length; i++){
+// //         userImages[i].style.display = 'block';
+// //     }
+// // }
 
-var computerImages = document.getElementsByClassName('overlay');
+// var computerImages = document.getElementsByClassName('overlay');
 
 // function hasFaintedComputer(){
 //     // for(var i = 0; i<computerImages.length; i++) {
