@@ -12,6 +12,7 @@
 body{
     background-color: rgb(230, 231, 182);
     font-size: 1.5em;
+    text-align: center;
 }
 
 #chooseTeams {

@@ -254,6 +254,9 @@ function movePower(){
                 var missText = document.createElement("p");
                 missText.textContent = "Missed!"
                 battleText.appendChild(missText);
+                setTimeout(function() {   
+                    battleText.removeChild(missText);
+                }, 1000)
             }
             else{
                 power = 50;
@@ -673,6 +676,12 @@ function moveBegins() {
         completeCpuMove();
         setTimeout(function() {   
             completeUserMove();
+            var hitText = document.createElement("p");
+            hitText.textContent = "Direct hit!"
+            battleText.appendChild(hitText);
+            setTimeout(function() {   
+                battleText.removeChild(hitText);
+            }, 1000)
         }, 2000)
     
     }
@@ -681,6 +690,7 @@ function moveBegins() {
 
 function completeUserMove(){
     // loseComputerHp(power);
+    
     var yourBigPoke = document.getElementById("your-poke-image");
     yourBigPoke.classList.add("object");
     yourBigPoke.classList.add("move-right");
@@ -691,13 +701,13 @@ function completeUserMove(){
     
     
     if (hasFaintedUser = true) {
-        for(var i = 0; i<userImages.length; i++) {
-            userImages[i].classList.add("overlay");
-        }
+        // for(var i = 0; i<userImages.length; i++) {
+        //     userImages[i].classList.add("overlay");
+        // }
 
-        var newBigPic = JSON.parse(localStorage.getItem("userPokemon"));
+        // var newBigPic = JSON.parse(localStorage.getItem("userPokemon"));
         
-        yourBigPoke.setAttribute("src", newBigPic[1].picture);
+        // yourBigPoke.setAttribute("src", newBigPic[1].picture);
     } 
 }
 
@@ -731,6 +741,12 @@ function storeCpuMove(value, randomizedArray, finalFourMoves, numOfGenOneMoves) 
 
 function completeCpuMove() {
     // loseUserHp(power);
+    var hitText = document.createElement("p");
+    hitText.textContent = "Direct hit!"
+    battleText.appendChild(hitText);
+    setTimeout(function() {   
+        battleText.removeChild(hitText);
+    }, 1000)
     var cpuBigPoke = document.getElementById("cpu-poke-image");
     cpuBigPoke.classList.add("object");
     cpuBigPoke.classList.add("move-left");
@@ -739,13 +755,13 @@ function completeCpuMove() {
     }, 500)
     if (hasFaintedComputer = true) {
 
-        for(var i = 0; i<computerImages.length; i++) {
-            computerImages[i].classList.add("overlay");
-        }
+        // for(var i = 0; i<computerImages.length; i++) {
+        //     computerImages[i].classList.add("overlay");
+        // }
         
-        var newBigPic = JSON.parse(localStorage.getItem("cpuPokemon"));
-        var cpuBigPoke = document.getElementById("cpu-poke-image");
-        cpuBigPoke.setAttribute("src", newBigPic[1].picture);
+        // var newBigPic = JSON.parse(localStorage.getItem("cpuPokemon"));
+        // var cpuBigPoke = document.getElementById("cpu-poke-image");
+        // cpuBigPoke.setAttribute("src", newBigPic[1].picture);
     }
 
 }

@@ -22,7 +22,7 @@
         <div id="container1">
             <section id="chooseTeams">
                 <label class="inline-block" id="chooseTeamsText" for="numPokemon">Choose team size:</label>
-                <input type="number" value="1" id="numPokemon" name="numPokemon" min="1" max="6">
+                <input type="number" value="1" id="numPokemon" name="numPokemon" min="1" max="1">
                 <button id="makeTeams">Make Teams!</button>
             </section>
             <section class="hidden" id="yourTeam">
@@ -57,11 +57,11 @@
           <div class="row align-items-center mt-3 mb-3">
             <!-- 1st column in the 2nd row displays it on the   -->
             <div class="col-4">
-              <div class="row">
-                <h2 id="user-pokemon-name"></h2>
-              </div>
               <div class="row" id="axis">
                 <img src="" class="img-fluid.maxwidth height-auto" alt="Responsive image" id="your-poke-image">
+              </div>
+              <div class="row">
+                <h2 id="user-pokemon-name"></h2>
               </div>
               <div class="row">
                 <div class="progress" id="userhealth">
@@ -71,21 +71,21 @@
               </div>
             </div>
             <!--2nd column in the 2nd row of the page  -->
-            <div class="col-2">
+            <div class="col-4">
               <h1 class="text-center">VS</h1>
             </div>
             <!--3rd column in the 2nd row of the page  -->
             <div class="col-4">
-              <div class="row">
-                <h2 id="cpu-pokemon-name"></h2>
-              </div>
               <div class="row" id="axis">
                 <img src="" class="img-fluid" alt="Responsive image" id="cpu-poke-image">
               </div>
               <div class="row">
+                <h2 id="cpu-pokemon-name"></h2>
+              </div>
+              <div class="row">
                 <div class="progress">
                     <progress style="width: 100%" value="500" max="500" id="computerHealth">
-                    </div>
+                    
                 </div>
               </div>
             </div>
@@ -110,13 +110,10 @@
                   <button id="button4" onclick="movePower()" type="button" class="battle-move btn btn-secondary w-100"></button> 
                 </div>
               </div>
-              <div class="row">
-                </div>
-              </div>
             </div>  
             
             <!-- 2nd column in the middle of 3rd row on page  -->
-            <div class="col-4">
+            <div class="col-4" id="battleText">
             
             </div>
             <!-- 3rd column on the right of 3rd row on page  -->
