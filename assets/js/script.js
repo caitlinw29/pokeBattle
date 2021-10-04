@@ -411,6 +411,24 @@ function makeTeams() {
             var cpuTeam = document.getElementById("cpuTeam");
             cpuTeam.appendChild(img);
         } 
+
+        // Make userPokemonName the H2 text that will display the pokemon name
+        var userPokemonName = document.getElementById('user-pokemon-name');
+        //pull the name from storage
+        var userPokeArray = JSON.parse(localStorage.getItem('userPokemon'));
+        userPokemonName.textContent = userPokeArray[0].name;
+
+        var cpuPokemonName = document.getElementById('cpu-pokemon-name');
+        var cpuPokeArray = JSON.parse(localStorage.getItem('cpuPokemon'));
+        cpuPokemonName.textContent = cpuPokeArray[0].name;
+
+        var userPokemonPic = document.getElementById('your-poke-image');
+        userPokemonPic.setAttribute('src',userPokeArray[0].picture);
+
+        var cpuPokemonPic = document.getElementById('cpu-poke-image');
+        cpuPokemonPic.setAttribute('src',cpuPokeArray[0].picture);
+
+
     }
     
     //Hide the "choose team size" input and "make teams" button
@@ -557,7 +575,7 @@ function moveBegins() {
         //input functionality of pokemon making a move and hp bar lowering
     }
     //!check with Zac to see what fainting is called, plug in as "movesBegin"
-    if (hasFaintedUser = true) {
+    if (moveBegins = true) {
         for(var i = 0; i<userImages.length; i++) {
             userImages[i].classList.add("overlay");
         }

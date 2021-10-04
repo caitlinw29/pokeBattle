@@ -35,20 +35,20 @@
             </section>
         </div>
 
-        <div class="container hidden" id="container2">
+        <div class="container-fluid hidden" id="container2">
     
             <!--  row 1 will hold 6 images for my team on left of screen and 6 images for cpu team on right of page.             -->
           <div class="row align-items-start m-3" id='battle-background'>
               <!--1st column on the left of the page will have two additional rows with 3 columns   -->
-              <div class="col" id="playerTeam">
+              <div class="col-4" id="playerTeam">
                 
               </div>
               <!-- 2 column in the first row -->
-              <div class="col">
+              <div class="col-4">
                   
               </div>
                 <!-- 3rd column on the right side -->
-              <div class="col" id="cpuTeam">
+              <div class="col-4" id="cpuTeam">
                   
               </div>
           </div>
@@ -56,11 +56,11 @@
           <!-- 2nd row will house 3 columns left and right side will have a pokemon image middle column will have VS wording-->
           <div class="row align-items-center mt-3 mb-3">
             <!-- 1st column in the 2nd row displays it on the   -->
-            <div class="col">
+            <div class="col-4">
               <div class="row">
-                <h2 id="pokemon-name">Pikachu Example</h2>
+                <h2 id="user-pokemon-name"> </h2>
               </div>
-              <div class="row">
+              <div class="row" >
                 <img src="" class="img-fluid.maxwidth height-auto " alt="Responsive image" id="your-poke-image">
               </div>
               <div class="row">
@@ -68,13 +68,13 @@
               </div>
             </div>
             <!--2nd column in the 2nd row of the page  -->
-            <div class="col">
+            <div class="col-2">
               <h1 class="text-center">VS</h1>
             </div>
             <!--3rd column in the 2nd row of the page  -->
-            <div class="col">
+            <div class="col-4">
               <div class="row">
-                <h2 id="pokemon-name">Charmander Example</h2>
+                <h2 id="cpu-pokemon-name"> </h2>
               </div>
               <div class="row">
                 <img src="" class="img-fluid" alt="Responsive image" id="cpu-poke-image">
@@ -86,7 +86,7 @@
           <!-- 3rd row with 3 columns left column will have 4 buttons for Pokemon moves and a switch pokemon button -->
           <div class="row align-items-end mt-3 mb-3">
             <!-- 1st column on the left of 3rd row on page  -->
-            <div class="col w-100">
+            <div class="col-4">
               <div class="row">
                 <div class="col">
                   <button id="button1" onclick="movePower()" type="button" class="battle-move btn btn-secondary w-100"></button> 
@@ -103,10 +103,14 @@
                   <button id="button4" onclick="movePower()" type="button" class="battle-move btn btn-secondary w-100"></button> 
                 </div>
               </div>
+              <div class="row">
+                </div>
+              </div>
             </div>  
             
             <!-- 2nd column in the middle of 3rd row on page  -->
-            <div class="col">
+            <div class="col-4">
+            
             </div>
             <!-- 3rd column on the right of 3rd row on page  -->
             <div class="col">
