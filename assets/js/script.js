@@ -276,9 +276,9 @@ function getRandomNum(min, max) {
   return Math.floor(Math.random() * (max - min + 1));
 }
 
-// oscars array
-var playerSpritesArray = [];
-var cpuSpritesArray = [];
+// // oscars array
+// var playerSpritesArray = [];
+// var cpuSpritesArray = [];
 var container2 = document.getElementById('container2');
 
 var input;
@@ -348,7 +348,7 @@ function makeTeams() {
         container.appendChild(img);
         container.appendChild(p);
 
-        playerSpritesArray.push(data.sprites.front_default);
+        // playerSpritesArray.push(data.sprites.front_default);
         
       })
   }
@@ -388,7 +388,7 @@ function makeTeams() {
                 container.appendChild(img);
                 container.appendChild(p);
 
-                cpuSpritesArray.push(data.sprites.front_default);
+                // cpuSpritesArray.push(data.sprites.front_default);
 
             })
         } 
@@ -398,19 +398,19 @@ function makeTeams() {
     function battleBtnDisplayTeams(){ 
         //creating images for each pokemon on both the user team, and the cpu team
         //images appended to their containers, with the src pulled from the playerSpritesArray and cpuSpritesArray
-        for (i=0; i<playerSpritesArray.length; i++) {
-            var img = document.createElement("img");
-            img.setAttribute("src", playerSpritesArray[i]);
-            var playerTeam = document.getElementById("playerTeam");
-            playerTeam.appendChild(img);
-        }
+        // for (i=0; i<playerSpritesArray.length; i++) {
+        //     var img = document.createElement("img");
+        //     img.setAttribute("src", playerSpritesArray[i]);
+        //     var playerTeam = document.getElementById("playerTeam");
+        //     playerTeam.appendChild(img);
+        // }
 
-        for (i=0; i<cpuSpritesArray.length; i++) {
-            var img = document.createElement("img");
-            img.setAttribute("src", cpuSpritesArray[i]);
-            var cpuTeam = document.getElementById("cpuTeam");
-            cpuTeam.appendChild(img);
-        } 
+        // for (i=0; i<cpuSpritesArray.length; i++) {
+        //     var img = document.createElement("img");
+        //     img.setAttribute("src", cpuSpritesArray[i]);
+        //     var cpuTeam = document.getElementById("cpuTeam");
+        //     cpuTeam.appendChild(img);
+        // } 
 
         // Make userPokemonName the H2 text that will display the pokemon name
         var userPokemonName = document.getElementById('user-pokemon-name');
