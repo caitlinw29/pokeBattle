@@ -103,7 +103,7 @@ body{
 
   /* Overlay color on the fainted pokemon */
 
-.userHpOverlay {
+/* .userHpOverlay {
     position: relative;
 }
 
@@ -121,7 +121,20 @@ body{
 
 .compHpOverlay {
     position: relative;
+} */
+
+#playAgainButton {
+    background-color: red;
+    color: white;
+    text-shadow: 2px 2px rgb(80, 17, 13);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.5em;
+    padding: 10px 20px;
+    margin-left: 40px;
+    display: block;
+    margin: 30px auto;
 }
 
-
-
+#playAgainButton:hover {
+    background-color: rgb(67, 107, 182);
+}
